@@ -69,7 +69,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-right"><strong>Sub-Total:</strong></td>
-                                        <td class="text-right amount">{{ number_format($total, 2) }}৳</td>
+                                        <td class="text-right amount">{{ number_format($total, 2) }}৳{{ number_format($total, 2) }}৳</td>
                                     </tr>
                                     <tr>
                                         <td class="text-right"><strong>Total:</strong></td>
@@ -84,7 +84,7 @@
                     <div class="buttons">
                         <div class="left-button"><a href="{{ route("index")}}"
                                 class="btn btn-primary">Continue Shopping</a></div>
-                        <div class="right-button"><a href="https://www.startech.com.bd/checkout/onepagecheckout"
+                        <div class="right-button"><a href="{{ route('check-out.index') }}"
                                 class="btn btn-primary checkout-btn">Confirm Order</a></div>
                     </div>
                 </div>

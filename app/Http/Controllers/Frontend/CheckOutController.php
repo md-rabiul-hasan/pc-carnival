@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class CheckOutController extends Controller
 {
     public function index(){       
-        return view('frontend.pages.checkout.index');
+        $cart = session()->get('cart', []);
+        $data = [
+            "cart_items" => $cart
+        ];
+        return view('frontend.pages.checkout.index', $data);
     }
 }

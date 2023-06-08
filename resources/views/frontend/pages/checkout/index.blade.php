@@ -207,51 +207,51 @@
 														<table class="table table-bordered table-hover">
 															<thead>
 																<tr>
+																	<td class="text-center rs-none">Image</td>
 																	<td class="text-left">Product Name</td>
-																	<td class="text-left">Model</td>
-																	<td class="text-left">Quantity</td>
-																	<td class="text-left">Unit Price</td>
-																	<td class="text-left">Total</td>
+																	<td class="text-right rs-none">Unit Price</td>
+																	<td class="text-right">Total</td>
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
-																	<td class="text-left">
-																		<a href="#">More-Or-Less</a>
+																@php $total = 0; @endphp
+																@foreach($cart_items as $item)
+																@php $total += $item['price'] * $item['quantity']; @endphp
+																	<tr>
+																		<td class="text-center rs-none"> <a
+																			href="https://www.startech.com.bd/samsung-galaxy-a52"><img
+																				src="{{ $item['image'] }}"
+																				alt="Samsung Galaxy A52 Smartphone (8/128GB)"
+																				title="Samsung Galaxy A52 Smartphone (8/128GB)"
+																				class="img-thumbnail cart-image"></a>
 																	</td>
-																	<td class="text-left">Product 14</td>
-																	<td class="text-left">2</td>
-																	<td class="text-left">$100.00</td>
-																	<td class="text-left">$200.00</td>
-																</tr>
-																<tr>
-																	<td class="text-left">
-																		<a href="#">Aliquam Consequat</a>
+																	<td class="text-left"><a
+																			href="https://www.startech.com.bd/samsung-galaxy-a52">{{ $item['title'] }}</a>
+																		<br>
 																	</td>
-																	<td class="text-left">Product 21</td>
-																	<td class="text-left">2</td>
-																	<td class="text-left">$45.00</td>
-																	<td class="text-left">$90.00</td>
+																	<td class="text-right rs-none">{{ $item['price'] }}৳</td>
+																	<td class="text-right">{{ $item['price'] * $item['quantity'] }}৳</td>
 																</tr>
+																@endforeach
 															</tbody>
 															<tfoot>
 																<tr>
-																	<td class="text-right" colspan="4">
+																	<td class="text-right" colspan="3">
 																		<strong>Sub-Total:</strong>
 																	</td>
-																	<td class="text-right">$290.00</td>
+																	<td class="text-right">{{ number_format($total, 2) }}৳</td>
 																</tr>
 																<tr>
-																	<td class="text-right" colspan="4">
-																		<strong>Flat Shipping Rate:</strong>
+																	<td class="text-right" colspan="3">
+																		<strong>Delivery Charge:</strong>
 																	</td>
-																	<td class="text-right">$5.00</td>
+																	<td class="text-right">{{ number_format(50, 2) }}৳</td>
 																</tr>
 																<tr>
-																	<td class="text-right" colspan="4">
-																		<strong>Flat Shipping Rate:</strong>
+																	<td class="text-right" colspan="3">
+																		<strong>Total:</strong>
 																	</td>
-																	<td class="text-right">$5.00</td>
+																	<td class="text-right">{{ number_format($total + 50, 2) }}৳</td>
 																</tr>
 															</tfoot>
 														</table>
