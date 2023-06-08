@@ -107,6 +107,15 @@ aria-hidden="true">
          ============================================ -->
          <script src="{{ asset('frontend/assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
          <script src="{{ asset('frontend/assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+
+         <!-- axios
+            ============================================ -->
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+         <!-- Toaster
+            ============================================ -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
          <!-- popper JS
             ============================================ -->
          <script src="{{ asset('frontend/assets/js/popper.min.js')}}"></script>

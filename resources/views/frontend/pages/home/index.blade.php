@@ -61,7 +61,9 @@
                                     <i class="fa fa-star-o"></i>
                                     </span>
                                     <div class="hot-deals-button">
-                                       <button><i class="fa fa-plus"></i> Add to Cart</button>
+                                       <button onclick="addToCart({{ $product->id }})">
+                                         <i class="fa fa-plus"></i> Add to Cart
+                                       </button>
                                        <div class="hot-deals-button-2">
                                           <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
                                              class="fa fa-heart-o"></i></a>
@@ -238,3 +240,20 @@
    </div>
    <!-- Product tab area end -->
 @endsection
+
+
+@push('js')
+   <script>
+      function addToCart(id){
+         axios.post('{{ route("cart.add_to_cart") }}', {
+                product_id: id
+            })
+            .then(function(response) {
+               toastr.success("This product has been added to your cart", 'Success');
+            })
+            .catch(function(error) {
+                toastr.error("Product add to cart Failed", 'Error');
+            });
+      }
+   </script>
+@endpush

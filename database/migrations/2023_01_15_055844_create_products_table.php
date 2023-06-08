@@ -30,6 +30,7 @@ class CreateProductsTable extends Migration
             $table->text('specifications')->nullable();
             $table->boolean('is_pc_build')->default(false);
             $table->integer('stock')->default(1)->comment('0: stock out, 1: stock available');
+            $table->enum("availability", ["pre_order", "in_stock", "out_of_stock"])->default("in_stock");
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');

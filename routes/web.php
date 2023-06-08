@@ -37,7 +37,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [HomePageController::class, 'index'])->name('index');
 Route::get('/product-filter', [ProductFilterController::class, 'index'])->name('product-filter.index');
 Route::get('/product-details/{slug}', [ProductDetailsController::class, 'index'])->name('product-details.index');
+
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add_to_cart');
+
 Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us.index');
 Route::get('/check-out', [CheckOutController::class, 'index'])->name('check-out.index');
 Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us.index');

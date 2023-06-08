@@ -1151,3 +1151,7 @@ td.product-info-label {
     border-left: 1px solid #ccc;
     padding-left: 10px;
 }
+
+.cart-image {
+    height: 50px;
+}

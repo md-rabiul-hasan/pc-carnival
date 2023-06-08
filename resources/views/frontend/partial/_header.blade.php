@@ -14,6 +14,10 @@
          ============================================ -->
       <link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
       <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+
+      <!-- Toaster CSS
+         ============================================ -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
       <!-- Bootstrap CSS
          ============================================ -->
       <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css')}}">
@@ -97,7 +101,7 @@
                    <!-- Start Top-Link -->
                    <div class="top-link">
                       <ul class="link">
-                         <li><a href="checkout.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                         <li><a href="{{ route('cart.index')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                          <li><a href="checkout.html"><i class="fa fa-user"></i> Login</a></li>
                       </ul>
                    </div>
