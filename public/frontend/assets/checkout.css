@@ -1,0 +1,13 @@
+.radio-inline {
+    line-height: 25px;
+}
+.radio-inline input {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.ws-box {
+    box-shadow: none!important;
+}
+.multiple-input-box {
+    width: 266px;
+}

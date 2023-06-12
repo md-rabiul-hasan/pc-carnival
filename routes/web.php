@@ -6,8 +6,10 @@ use App\Http\Controllers\Backend\AdminAuthController;
 use App\Http\Controllers\Backend\AdminHomeController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\AboutUsController;
+use App\Http\Controllers\frontend\AuthenticationController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckOutController;
+use App\Http\Controllers\Frontend\ConfirmOrderController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Frontend\PcBuildController;
@@ -47,4 +49,9 @@ Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us
 Route::get('/pc-build', [PcBuildController::class, 'index'])->name('pc-build.index');
 
 Route::get('/product/{slug}/details', [ProductController::class, 'productDetails'])->name('product.details');
+
+Route::post('/confirm-order', [ConfirmOrderController::class, 'confirmOrder'])->name('confirm-order');
+
+Route::post("/auth/registration", [AuthenticationController::class, 'registration'])->name("auth.registration");
+Route::post("/auth/signin", [AuthenticationController::class, 'signin'])->name("auth.signin");
 

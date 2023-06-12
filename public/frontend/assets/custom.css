@@ -1155,3 +1155,38 @@ td.product-info-label {
 .cart-image {
     height: 50px;
 }
+
+
+/* Checkout Page */
+.checkout-final-action {
+    display: flex;
+    align-items: center;
+    border-top: 3px solid #eee;
+    padding-top: 20px;
+    margin-bottom: 50px;
+}
+
+.checkout-final-action .agree-text {
+    flex: 1 1 auto;
+    position: relative;
+    padding-left: 30px;
+}
+
+.checkout-content .page-section {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.ws-box {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+.multiple-form-group {
+    display: flex;
+    justify-content: space-between;
+}
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}

@@ -69,7 +69,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-right"><strong>Sub-Total:</strong></td>
-                                        <td class="text-right amount">{{ number_format($total, 2) }}৳{{ number_format($total, 2) }}৳</td>
+                                        <td class="text-right amount">{{ number_format($total, 2) }}৳</td>
                                     </tr>
                                     <tr>
                                         <td class="text-right"><strong>Total:</strong></td>
