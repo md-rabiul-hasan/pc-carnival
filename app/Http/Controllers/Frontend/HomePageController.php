@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class HomePageController extends Controller
 {
     public function index(){
-        $products = Product::with('images')->get();
+        $products = Product::get();
         $data =[
             "products" => $products
         ];

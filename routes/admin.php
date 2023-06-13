@@ -30,6 +30,7 @@ Route::group([
 
     // Route for managing products
     Route::resource('product', ProductController::class);
+    Route::post('product/search-related-product', [ProductController::class, 'searchRelatedProduct']);
 
     // Route to find sub-categories for a product
     Route::get('product/find-sub-category/{id}', [ProductController::class, 'findSubCategory'])->name('product.find_sub_category');

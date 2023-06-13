@@ -21,13 +21,13 @@
 						<div class="product-img-holder">
 
 							<a class="thumbnail"
-								href="{{ asset($product->images[0]->image_path) }}"
+								href="{{ asset($product->image) }}"
 								title="{{ $product->title }}"><img class="main-img"
-									src="{{ asset($product->images[0]->image_path) }}"
+									src="{{ asset($product->image) }}"
 									title="{{ $product->title }}"
 									alt="{{ $product->title }}" width="500" height="500"></a>
 							<meta itemprop="image"
-								content="{{ asset($product->images[0]->image_path) }}">
+								content="{{ asset($product->image) }}">
 						</div>
 						<ul class="thumbnails">
 							@foreach($product->images as $image)
