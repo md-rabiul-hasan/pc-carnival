@@ -31,7 +31,7 @@ Product
                   <th>SL</th>
                   <th>Title</th>
                   <th>Code</th>
-                  <th>Quantity</th>
+                  <th>Availability</th>
                   <th>Buying Price</th>
                   <th>Current Price</th>
                   <th>Action</th>
@@ -43,7 +43,7 @@ Product
                     <td>{{ $sl++ }}</td>
                     <td>{{ $product->title }}</td>
                     <td>{{ $product->product_code }}</td>
-                    <td>{{ $product->quantity > 0 ? $product->quantity : 'Stok Out' }}</td>
+                    <td>{{ str_replace("_", " ", strtoupper($product->availability) ) }}</td>
                     <td>{{ $product->buying_price }}</td>
                     <td>{{ $product->current_price }}</td>
                     <td>

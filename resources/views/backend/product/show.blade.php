@@ -53,12 +53,12 @@ Product
                     <td>{{ $product->sub_category->title }}</td>
                   </tr>
                   <tr>
-                    <th>Quantity</th>
-                    <td>{{ $product->quantity }}</td>
+                    <th>Availability</th>
+                    <td>{{ str_replace("_", " ", strtoupper($product->availability) ) }}</td>
                   </tr>
                   <tr>
                     <th>Price</th>
-                    <td>{{ number_format($product->price,2) }}</td>
+                    <td>{{ number_format($product->buying_price,2) }}</td>
                   </tr>
                   <tr>
                     <th>Current Price</th>
@@ -80,9 +80,16 @@ Product
                     <th>Description</th>
                     <td>{!! $product->description !!}</td>
                   </tr>
+                  <tr>
+                    <th>Image</th>
+                    <td>
+                        <img class="img-thumbnail" style="cursor: pointer" onclick="imagePreviewModal('{{ asset($product->image) }}')"  alt="200x200" width="200" src="{{ asset($product->image) }}" data-holder-rendered="true">
+                   
+                    </td>
+                  </tr>
                   
                     <tr>
-                      <th>Image</th>
+                      <th>Gallery</th>
                       <td>
                         @foreach($product->images as $image)
                           <img class="img-thumbnail" style="cursor: pointer" onclick="imagePreviewModal('{{ asset($image->image_path) }}')"  alt="200x200" width="200" src="{{ asset($image->image_path) }}" data-holder-rendered="true">

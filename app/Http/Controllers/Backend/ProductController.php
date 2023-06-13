@@ -66,8 +66,8 @@ class ProductController extends Controller
         $product->sub_category_id     = $request->input('sub_category_id');
         $product->title               = $request->input('title');
         $product->slug                = Str::slug($request->input('title'));
+        $product->image               = $this->imageUpload($request->file('product_image'), "storage/product/");
         $product->product_code        = uniqid();
-        $product->quantity            = $request->input('quantity');
         $product->buying_price        = $request->input('buying_price');
         $product->selling_price       = $request->input('selling_price');
         $product->current_price       = ($request->input('selling_price') - ( ($request->input('selling_price') / 100 ) * $request->input('discount_percentage') ));
@@ -75,7 +75,7 @@ class ProductController extends Controller
         $product->key_features        = $request->input('key_features');
         $product->specifications      = $request->input('specifications');
         $product->description         = $request->input('description');
-        $product->stock               = $request->input('quantity') > 0 ? 1 : 0;
+        $product->availability        = $request->input('availability');
         $product->is_pc_build         = $request->input('is_pc_build') == 'on' ? 1 : 0;
         $product->save();
 
@@ -140,7 +140,8 @@ class ProductController extends Controller
         $product->sub_category_id     = $request->input('sub_category_id');
         $product->title               = $request->input('title');
         $product->slug                = Str::slug($request->input('title'));
-        $product->quantity            = $request->input('quantity');
+        $product->image               = $this->imageRemoveAndUpload($product->image, $request->file('product_image'), "storage/product/");;
+        $product->availability        = $request->input('availability');
         $product->buying_price        = $request->input('buying_price');
         $product->selling_price       = $request->input('selling_price');
         $product->current_price       = ($request->input('selling_price') - ( ($request->input('selling_price') / 100 ) * $request->input('discount_percentage') ));
@@ -148,8 +149,21 @@ class ProductController extends Controller
         $product->key_features        = $request->input('key_features');
         $product->specifications      = $request->input('specifications');
         $product->description         = $request->input('description');
-        $product->stock               = $request->input('quantity') > 0 ? 1 : 0;
+        $product->is_pc_build         = $request->input('is_pc_build') == 'on' ? 1 : 0;
         $product->save();
+
+                
+        if ($request->hasFile('image')) {
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $productImage = new ProductImage();
+                $productImage->product_id = $product->id;
+                $productImage->image_path = $this->imageUpload($file, "storage/product/");
+                $productImage->save();
+            }
+        }
+
+        
         return redirect()->route('admin.product.index');
     }
 

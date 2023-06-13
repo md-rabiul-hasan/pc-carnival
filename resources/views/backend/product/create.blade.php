@@ -34,6 +34,10 @@ Product
                   <input class="form-control" type="text" placeholder="Title" name="title" required>
                </div>
                <div class="form-group">
+                  <label class="control-label">Product Image</label>
+                  <input class="form-control" type="file" name="product_image" required>
+               </div>
+               <div class="form-group">
                   <label class="control-label">Select Brand <span style="color:red;">**</span></label>
                   <select class="form-control select2" name="brand_id" required>
                      <option value="">Select Brand</option>
@@ -59,8 +63,13 @@ Product
                 </select>
              </div>
                <div class="form-group">
-                  <label class="control-label">Quantity <span style="color:red;">**</span></label>
-                  <input class="form-control" type="number" placeholder="1" name="quantity" required>
+                  <label class="control-label">Availability <span style="color:red;">**</span></label>
+                  <select class="form-control select2" name="availability" id="availability" required>
+                     <option value="">Select Availability</option>
+                     <option value="in_stock">IN-STOCK</option>
+                     <option value="out_of_stock">OUT-STOCK</option>
+                     <option value="pre_order">PRE-ORDER</option>
+                  </select>
                </div>
                <div class="form-group">
                   <label class="control-label">Buying Price <span style="color:red;">**</span></label>
@@ -82,7 +91,7 @@ Product
                   <span id="current_price_in_word" style="text-transform:capitalize; color:red; font-weight:bold"></span>
                </div>
                <div class="form-group">
-                <label class="control-label">Image</label>
+                <label class="control-label">Gallery (Upload Multiple Image)</label>
                 <input class="form-control" type="file" multiple name="image[]">
              </div>
             </div>

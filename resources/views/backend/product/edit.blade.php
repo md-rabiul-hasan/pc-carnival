@@ -35,6 +35,13 @@ Product
                   <input class="form-control" type="text" placeholder="Title" name="title" value="{{ $product->title }}" required>
                </div>
                <div class="form-group">
+                  <label class="control-label">Product Image</label> 
+                  <span>
+                     <img src="{{ asset($product->image) }}" onclick="imagePreviewModal('{{ asset($product->image) }}')"  alt="" style="height: 24px; weight: 24px">
+                  </span>
+                  <input class="form-control" type="file" name="product_image">
+               </div>
+               <div class="form-group">
                   <label class="control-label">Select Brand <span style="color:red;">**</span></label>
                   <select class="form-control select2" name="brand_id" required>
                      <option value="">Select Brand</option>
@@ -61,10 +68,15 @@ Product
                     @endforeach
                 </select>
              </div>
-               <div class="form-group">
-                  <label class="control-label">Quantity <span style="color:red;">**</span></label>
-                  <input class="form-control" type="number" placeholder="1" name="quantity" value="{{ $product->quantity }}" required>
-               </div>
+             <div class="form-group">
+               <label class="control-label">Availability <span style="color:red;">**</span></label>
+               <select class="form-control select2" name="availability" id="availability" required>
+                  <option value="">Select Availability</option>
+                  <option value="in_stock" @if($product->availability == "in_stock") selected @endif>IN-STOCK</option>
+                  <option value="out_of_stock" @if($product->availability == "out_of_stock") selected @endif>OUT-STOCK</option>
+                  <option value="pre_order" @if($product->availability == "pre_order") selected @endif>PRE-ORDER</option>
+               </select>
+            </div>
                <div class="form-group">
                   <label class="control-label">Buying Price <span style="color:red;">**</span></label>
                   <input class="form-control" type="number" placeholder="100.00" step="0.01" min="1" name="buying_price" id="buying_price" onkeyup="buyingPriceInWord()"  value="{{ $product->buying_price }}" required>
@@ -85,9 +97,13 @@ Product
                   <span id="current_price_in_word" style="text-transform:capitalize; color:red; font-weight:bold"></span>
                </div>
                <div class="form-group">
-                <label class="control-label">Image</label>
-                <input class="form-control" type="file" name="image">
-             </div>
+                  <label class="control-label">Gallery (Upload Multiple Image)</label>
+                  <br>
+                  @foreach($product->images as $image)
+                     <img class="img-thumbnail" style="cursor: pointer" onclick="imagePreviewModal('{{ asset($image->image_path) }}')"  alt="200x200" width="30px" height="30px" src="{{ asset($image->image_path) }}" data-holder-rendered="true">
+                  @endforeach
+                  <input class="form-control mt-3" type="file" multiple name="image[]">
+               </div>
             </div>
          </div>
       </div>

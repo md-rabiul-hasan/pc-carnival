@@ -20,8 +20,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('sub_category_id');
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('image')->nullable();
             $table->string('product_code')->unique();
-            $table->integer('quantity')->default(0);
             $table->double('buying_price', 10, 2);
             $table->double('selling_price', 10, 2);
             $table->double('current_price', 10, 2);
@@ -29,7 +29,6 @@ class CreateProductsTable extends Migration
             $table->text('key_features');
             $table->text('specifications')->nullable();
             $table->boolean('is_pc_build')->default(false);
-            $table->integer('stock')->default(1)->comment('0: stock out, 1: stock available');
             $table->enum("availability", ["pre_order", "in_stock", "out_of_stock"])->default("in_stock");
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

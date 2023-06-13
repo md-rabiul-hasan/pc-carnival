@@ -41,7 +41,7 @@
                                  @endif
                                  <div class="product-img">
                                     <a href="#">
-                                    <img class="primary-img" src="{{ asset($product->images[0]->image_path)}}"
+                                    <img class="primary-img" src="{{ asset($product->image)}}"
                                        alt="Product">
                                     </a>
                                  </div>
@@ -120,7 +120,7 @@
                                  @endif
                                  <div class="product-img">
                                     <a href="#">
-                                    <img class="primary-img" src="{{ asset($product->images[0]->image_path)}}" alt="Product">
+                                    <img class="primary-img" src="{{ asset($product->image)}}" alt="Product">
                                     </a>
                                  </div>
                                  <div class="product-description">
@@ -196,7 +196,7 @@
                                  @endif
                                  <div class="product-img">
                                     <a href="#">
-                                       <img class="primary-img" src="{{ asset($product->images[0]->image_path)}}"
+                                       <img class="primary-img" src="{{ asset($product->image)}}"
                                        alt="Product">
                                     </a>
                                  </div>
