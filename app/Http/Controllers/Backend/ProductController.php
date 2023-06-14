@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\RelatedProduct;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -91,6 +92,16 @@ class ProductController extends Controller
             }
         }
 
+        if ($request->has('related_products')) {
+            $related_products = $request->input('related_products');
+            foreach ($related_products as $related_product) {
+                $relatedProduct = new RelatedProduct();
+                $relatedProduct->product_id = $product->id;
+                $relatedProduct->related_product_id = $related_product;
+                $relatedProduct->save();
+            }
+        }
+
 
         return redirect()->route('admin.product.index');
     }
@@ -103,8 +114,16 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $relatedProductIds = DB::table('related_products')->where('product_id', $product->id)->pluck('related_product_id');
+    
+        $relatedProducts = DB::table('products')
+            ->select('id', 'title', 'image', 'slug')
+            ->whereIn('id', $relatedProductIds)
+            ->get();
+
         $data = [
-            "product" => $product
+            "product" => $product,
+            "relatedProducts" => $relatedProducts
         ];
         return view('backend.product.show', $data);
     }

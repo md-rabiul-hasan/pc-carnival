@@ -96,6 +96,20 @@ Product
                         @endforeach
                       </td>
                     </tr>
+                    <tr>
+                      <th>Related Products</th>
+                      <td>
+                        <ul>
+                          @foreach($relatedProducts as $relatedProduct)
+                            <li>
+                              <label>{{ $relatedProduct->title }}</label>
+                              <img class="img-thumbnail" style="cursor: pointer" onclick="imagePreviewModal('{{ asset($relatedProduct->image) }}')" alt="200x200" width="200" src="{{ asset($relatedProduct->image) }}" data-holder-rendered="true">
+                            </li>
+                          @endforeach
+                        </ul>
+                      </td>
+                    </tr>
+                    
                   
               </tbody>
             </table>

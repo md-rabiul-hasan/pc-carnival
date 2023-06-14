@@ -240,20 +240,3 @@
    </div>
    <!-- Product tab area end -->
 @endsection
-
-
-@push('js')
-   <script>
-      function addToCart(id){
-         axios.post('{{ route("cart.add_to_cart") }}', {
-                product_id: id
-            })
-            .then(function(response) {
-               toastr.success("This product has been added to your cart", 'Success');
-            })
-            .catch(function(error) {
-                toastr.error("Product add to cart Failed", 'Error');
-            });
-      }
-   </script>
-@endpush

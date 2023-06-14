@@ -160,6 +160,26 @@ aria-hidden="true">
                $(".image-modal").modal('show');
             }
          </script>
+
+         <script>
+            function addToCart(id) {
+               axios.post('{{ route("cart.add_to_cart") }}', {
+                        product_id: id
+                  })
+                  .then(function(response) {
+                        toastr.success("This product has been added to your cart", 'Success');
+                  })
+                  .catch(function(error) {
+                        if (error.response) {
+                           toastr.error(error.response.data.error, 'Error');
+                        } else {
+                           toastr.error("Product add to cart Failed", 'Error');
+                        }
+                  });
+            }
+         </script>
+
+
       </body>
       <!-- Mirrored from htmldemo.net/malias/malias/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jan 2023 15:38:42 GMT -->
    </html>

@@ -10,8 +10,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="page-menu">
-						<li><a href="index.html">Home</a></li>
-						<li class="active"><a href="#">{{ $product->title }}</a></li>
+						<li><a href="{{ route('index') }}">Home</a></li>
+						<li class="active"><a href="{{ route('product-details.index', $product->slug) }}">{{ $product->title }}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -51,7 +51,7 @@
 								<tbody>										
 									<tr class="product-info-group">
 										<td class="product-info-label">Status: </td>
-										<td class="product-info-data product-status"> {{ $product->quantity > 0 ? "In Stock" : "Out Of Stock" }}</td>
+										<td class="product-info-data product-status"> {{ str_replace("_", " ", strtoupper($product->availability) ) }} </td>
 									</tr>
 									<tr class="product-info-group">
 										<td class="product-info-label">Product Code: </td>
@@ -113,9 +113,15 @@
 										@if(!empty($product->specifications))
 											<li data-area="specification">Specification</li>
 										@endif
-										<li data-area="description">Description</li>
-										<li class="hidden-xs" data-area="ask-question">Questions (0)</li>
-										<li data-area="write-review">Reviews (0)</li>
+										<li data-area="description">
+											<a href="#description" class="redirect-text">Description</a>
+										</li>
+										<li class="hidden-xs" data-area="ask-question">
+											<a href="#question" class="redirect-text">Questions</a>
+										</li>
+										<li data-area="write-review">
+											<a href="#review" class="redirect-text">Reviews</a>
+										</li>
 									</ul>
 								</div>
 
@@ -141,12 +147,12 @@
 								<section class="ask-question q-n-r-section bg-white m-tb-15" id="ask-question">
 									<div class="section-head">
 										<div class="title-n-action">
-											<h2>Questions (0)</h2>
+											<h2>Questions</h2>
 											<p class="section-blurb">Have question about this product? Get specific
 												details about this product from expert.</p>
 										</div>
 										<div class="q-action">
-											<a href="https://www.startech.com.bd/account/question?product_id=26146"
+											<a href="#"
 												class="btn st-outline">Ask Question</a>
 										</div>
 									</div>
@@ -163,14 +169,14 @@
 								<section class="review  q-n-r-section bg-white m-tb-15" id="write-review">
 									<div class="section-head">
 										<div class="title-n-action">
-											<h2>Reviews (0)</h2>
+											<h2>Reviews</h2>
 											<p class="section-blurb">Get specific details about this product from
 												customers who own it.</p>
 											<div class="average-rating">
 											</div>
 										</div>
 										<div class="q-action">
-											<a href="https://www.startech.com.bd/account/review?product_id=26146"
+											<a href="#"
 												class="btn st-outline">Write a Review</a>
 										</div>
 									</div>
@@ -183,96 +189,38 @@
 									</div>
 								</section>
 							</div>
+							@if(count($relatedProducts) > 0)
 							<div class="col-lg-3 col-md-12 c-left">
 								<section class="related-product-list">
 									<h3>Related Product</h3>
-									<div class="p-s-item">
-										<div class="image-holder">
-											<a href="https://www.startech.com.bd/samsung-galaxy-a13"><img
-													src="https://www.startech.com.bd/image/cache/catalog/mobile/samsung/galaxy-a13/galaxy-a13-001-80x80.webp"
-													alt="Samsung Galaxy A13 Smartphone (4/64GB)" width="80"
-													height="80"></a>
-										</div>
-										<div class="caption">
-											<h4 class="product-name">
-												<a href="https://www.startech.com.bd/samsung-galaxy-a13">Samsung
-													Galaxy A13 Smartphone (4/64GB)</a>
-											</h4>
-											<div class="p-item-price price">
-												<span>20,999৳</span> <span class="btn btn-primary details-add-to-cart-btn"><i
-													class="fa fa-shopping-cart"></i></span>
+
+									@foreach($relatedProducts as $relatedProduct)
+										<div class="p-s-item">
+											<div class="image-holder">
+												<a href="{{ route('product.details', $relatedProduct->slug)}}">
+													<img
+														src="{{ asset($relatedProduct->image) }}"
+														alt="{{ $relatedProduct->title }}" width="80"
+														height="80"></a>
 											</div>
-											<div class="actions">
-												<span class="btn btn-primary details-add-to-cart-btn" onclick="compare.add('26140');"><i
-														class="fa fa-shopping-cart"></i>Add to Cart</span>
-											</div>
-										</div>
-									</div>
-									<div class="p-s-item">
-										<div class="image-holder">
-											<a href="https://www.startech.com.bd/samsung-galaxy-a13-6-128gb"><img
-													src="https://www.startech.com.bd/image/cache/catalog/mobile/samsung/galaxy-a13/galaxy-a13-001-80x80.webp"
-													alt="Samsung Galaxy A13 Smartphone (6/128GB)" width="80"
-													height="80"></a>
-										</div>
-										<div class="caption">
-											<h4 class="product-name">
-												<a href="https://www.startech.com.bd/samsung-galaxy-a13-6-128gb">Samsung
-													Galaxy A13 Smartphone (6/128GB)</a>
-											</h4>
-											<div class="p-item-price price">
-												<span>23,999৳</span>
-											</div>
-											<div class="actions">
-												<span class="btn btn-primary details-add-to-cart-btn" onclick="compare.add('26140');"><i
-														class="fa fa-shopping-cart"></i>Add to Cart</span>
+											<div class="caption">
+												<h4 class="product-name">
+													<a href="{{ route('product.details', $relatedProduct->slug)}}">{{ $relatedProduct->title }}</a>
+												</h4>
+												<div class="p-item-price price">
+													<span>{{ $relatedProduct->current_price }}৳</span> 
+												</div>
+												<div class="actions">
+													<span class="btn btn-primary details-add-to-cart-btn" onclick="addToCart({{ $relatedProduct->id }})"><i
+															class="fa fa-shopping-cart"></i>Add to Cart</span>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="p-s-item">
-										<div class="image-holder">
-											<a href="https://www.startech.com.bd/samsung-galaxy-m12"><img
-													src="https://www.startech.com.bd/image/cache/catalog/mobile/samsung/galaxy-m12/galaxy-m12-001-80x80.webp"
-													alt="Samsung Galaxy M12 Smartphone (6/128GB)" width="80"
-													height="80"></a>
-										</div>
-										<div class="caption">
-											<h4 class="product-name">
-												<a href="https://www.startech.com.bd/samsung-galaxy-m12">Samsung
-													Galaxy M12 Smartphone (6/128GB)</a>
-											</h4>
-											<div class="p-item-price price">
-												<span>23,499৳</span>
-											</div>
-											<div class="actions">
-												<span class="btn btn-primary details-add-to-cart-btn" onclick="compare.add('26140');"><i
-														class="fa fa-shopping-cart"></i>Add to Cart</span>
-											</div>
-										</div>
-									</div>
-									<div class="p-s-item">
-										<div class="image-holder">
-											<a href="https://www.startech.com.bd/samsung-galaxy-f22"><img
-													src="https://www.startech.com.bd/image/cache/catalog/mobile/samsung/galaxy-f22/galaxy-f22-001-80x80.webp"
-													alt="Samsung Galaxy F22 Smartphone (6/128GB)" width="80"
-													height="80"></a>
-										</div>
-										<div class="caption">
-											<h4 class="product-name">
-												<a href="https://www.startech.com.bd/samsung-galaxy-f22">Samsung
-													Galaxy F22 Smartphone (6/128GB)</a>
-											</h4>
-											<div class="p-item-price price">
-												<span>23,999৳</span>
-											</div>
-											<div class="actions">
-												<span class="btn btn-primary details-add-to-cart-btn" onclick="compare.add('26140');"><i
-														class="fa fa-shopping-cart"></i>Add to Cart</span>
-											</div>
-										</div>
-									</div>
+									@endforeach
+
 								</section>
 							</div>
+							@endif
 						</div>
 					</div>
 				</div>

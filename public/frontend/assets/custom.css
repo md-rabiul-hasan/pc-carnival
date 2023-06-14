@@ -1190,3 +1190,7 @@ td.product-info-label {
     margin-bottom: 20px;
     position: relative;
 }
+.redirect-text {
+    color:#000;
+    text-decoration: none;
+}

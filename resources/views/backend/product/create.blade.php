@@ -131,14 +131,13 @@ Product
       </div>
       <div class="col-md-6">
          <div class="tile">
-            <h3 class="tile-title">Add Related Products <span><button type="button" class="btn btn-sm btn-primary" style="float: right;" id="add-product"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</button></span></h3>
+            <h3 class="tile-title">Add Related Products</h3>
             <div class="tile-body">
                <div id="related-products-container">
-                  <div class="related-product add-more-field">
-                     <select class="form-control select2" name="related_products" multiple id="related_products" required>
+                  <div class="related-product">
+                     <select class="form-control select2" name="related_products[]" multiple id="related_products" required>
                         <option value="">Search Product</option>
                      </select>
-                     <button type="button" class="btn btn-sm btn-danger remove-product"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </div>
                </div>               
             </div>
@@ -214,100 +213,29 @@ function appendSelect2Value(products) {
 
 $(document).ready(function(){
 
-$("#related_products").select2({
-   ajax: {
-     url: "http://127.0.0.1:8000/admin/product/search-related-product",
-     type: "post",
-     dataType: 'json',
-     delay: 250,
-     data: function (params) {
-        return {
-           searchTerm: params.term // search term
-        };
-     },
-     headers: {
-         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+   $("#related_products").select2({
+      ajax: {
+      url: "search-related-product",
+      type: "post",
+      dataType: 'json',
+      delay: 250,
+      data: function (params) {
+         return {
+            searchTerm: params.term // search term
+         };
       },
-     processResults: function (response) {
-        return {
-           results: response
-        };
-     },
-     cache: true
-   }
+      headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+         },
+      processResults: function (response) {
+         return {
+            results: response
+         };
+      },
+      cache: true
+      }
+   });
 });
-});
-
-
-
-// $(document).ready(function() {
-//     var selectElement = $('#related_products');
-
-//     selectElement.select2({
-//         // Select2 configuration options
-//         data: [] // Initialize with an empty data array
-//     });
-
-//     // Get Select2 input element
-//     var selectInput = selectElement.next('.select2-container').find('.select2-search__field');
-
-//     // Attach keyup event listener
-//     function attachKeyupListener() {
-//         selectInput.on('keyup', function() {
-//             var typedData = $(this).val();
-//             if (typedData !== "") {
-//                 $.ajax({
-//                     url: '/admin/product/search-related-product',
-//                     method: 'POST',
-//                     data: {
-//                         searchText: typedData
-//                     },
-//                     headers: {
-//                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-//                     },
-//                     cache: false // Disable caching
-//                 })
-//                 .then(function(response) {
-//                     appendSelect2Value(response);
-//                 })
-//                 .catch(function(error) {
-//                     console.log(error);
-//                 });
-//             }
-//         });
-//     }
-
-//     // Event listener for initial keyup event
-//     selectInput.on('keyup', function() {
-//         var typedData = $(this).val();
-//         if (typedData !== "") {
-//             $.ajax({
-//                 url: '/admin/product/search-related-product',
-//                 method: 'POST',
-//                 data: {
-//                     searchText: typedData
-//                 },
-//                 headers: {
-//                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-//                 },
-//                 cache: false // Disable caching
-//             })
-//             .then(function(response) {
-//                 selectElement.select2('destroy'); // Destroy the Select2 instance
-//                 appendSelect2Value(response);
-//                 selectElement.select2(); // Reinitialize the Select2 instance
-//                 // Reattach keyup event listener after reinitializing Select2
-//                 selectInput.off('keyup');
-//                 attachKeyupListener();
-//             })
-//             .catch(function(error) {
-//                 console.log(error);
-//             });
-//         }
-//     });
-// });
-
-
 
 
 

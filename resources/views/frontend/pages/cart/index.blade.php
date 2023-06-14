@@ -36,14 +36,14 @@
                                     @php $total += $item['price'] * $item['quantity']; @endphp
                                     <tr>
                                         <td class="text-center rs-none"> <a
-                                                href="https://www.startech.com.bd/samsung-galaxy-a52"><img
+                                                href="{{ route('product-details.index', $item['slug']) }}"><img
                                                     src="{{ $item['image'] }}"
-                                                    alt="Samsung Galaxy A52 Smartphone (8/128GB)"
-                                                    title="Samsung Galaxy A52 Smartphone (8/128GB)"
+                                                    alt="{{ $item['title'] }}"
+                                                    title="{{ $item['title'] }}"
                                                     class="img-thumbnail cart-image"></a>
                                         </td>
                                         <td class="text-left"><a
-                                                href="https://www.startech.com.bd/samsung-galaxy-a52">{{ $item['title'] }}</a>
+                                                href="{{ route('product-details.index', $item['slug']) }}">{{ $item['title'] }}</a>
                                             <br>
                                         </td>
                                         <td class="text-left">
