@@ -205,7 +205,7 @@
 											</div>
 											<div class="caption">
 												<h4 class="product-name">
-													<a href="{{ route('product.details', $relatedProduct->slug)}}">{{ $relatedProduct->title }}</a>
+													<a href="{{ route('product-details.index', $relatedProduct->slug)}}">{{ $relatedProduct->title }}</a>
 												</h4>
 												<div class="p-item-price price">
 													<span>{{ $relatedProduct->current_price }}৳</span> 

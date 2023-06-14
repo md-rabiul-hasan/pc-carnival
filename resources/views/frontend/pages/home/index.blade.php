@@ -30,46 +30,33 @@
                <div role="tabpanel" class="tab-pane fade show active" id="display-1-1">
                   <div class="row">
                      <div class="active-product-carosel-style-2 owl-carousel">
-                        @foreach($products as $product)
+                        @foreach($latest_products as $latest_product)
                         <!-- Start Single-Product -->
                            <div class="col-12">
                               <div class="single-product style-2">
-                                 @if($product->discount_percentage > 0)
+                                 @if($latest_product->product->discount_percentage > 0)
                                     <div class="sale-off">
-                                       <span class="sale-percent">-{{$product->discount_percentage}}%</span>
+                                       <span class="sale-percent">-{{$latest_product->product->discount_percentage}}%</span>
                                     </div>
                                  @endif
                                  <div class="product-img">
                                     <a href="#">
-                                    <img class="primary-img" src="{{ asset($product->image)}}"
+                                    <img class="primary-img" src="{{ asset($latest_product->product->image)}}"
                                        alt="Product">
                                     </a>
                                  </div>
                                  <div class="product-description">
-                                    <h5><a href="{{ route('product-details.index', $product->slug) }}">{{$product->title}}</a></h5>
+                                    <h5><a href="{{ route('product-details.index', $latest_product->product->slug) }}">{{$latest_product->product->title}}</a></h5>
                                     <div class="price-box">
-                                       <span class="price">৳ {{$product->current_price}}</span>
-                                       @if($product->discount_percentage > 0)
-                                          <span class="old-price">৳ {{$product->selling_price}}</span>
+                                       <span class="price">৳ {{$latest_product->product->current_price}}</span>
+                                       @if($latest_product->product->discount_percentage > 0)
+                                          <span class="old-price">৳ {{$latest_product->product->selling_price}}</span>
                                        @endif
                                     </div>
-                                    <span class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    </span>
                                     <div class="hot-deals-button">
-                                       <button onclick="addToCart({{ $product->id }})">
+                                       <button onclick="addToCart({{ $latest_product->product->id }})">
                                          <i class="fa fa-plus"></i> Add to Cart
                                        </button>
-                                       <div class="hot-deals-button-2">
-                                          <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
-                                             class="fa fa-heart-o"></i></a>
-                                          <a href="#" data-bs-toggle="tooltip" title="Compare"><i
-                                             class="fa fa-signal"></i></a>
-                                       </div>
                                     </div>
                                  </div>
                               </div>
@@ -109,43 +96,32 @@
                <div role="tabpanel" class="tab-pane fade show active" id="display-1-1">
                   <div class="row">
                      <div class="active-product-carosel-style-2 owl-carousel">
-                        @foreach($products as $product)
+                        @foreach($popular_products as $popular_product)
                         <!-- Start Single-Product -->
                            <div class="col-12">
                               <div class="single-product style-2">
-                                 @if($product->discount_percentage > 0)
+                                 @if($popular_product->product->discount_percentage > 0)
                                     <div class="sale-off">
-                                       <span class="sale-percent">-{{$product->discount_percentage}}%</span>
+                                       <span class="sale-percent">-{{$popular_product->product->discount_percentage}}%</span>
                                     </div>
                                  @endif
                                  <div class="product-img">
                                     <a href="#">
-                                    <img class="primary-img" src="{{ asset($product->image)}}" alt="Product">
+                                    <img class="primary-img" src="{{ asset($popular_product->product->image)}}" alt="Product">
                                     </a>
                                  </div>
                                  <div class="product-description">
-                                    <h5><a href="{{ route('product-details.index', $product->slug) }}">{{$product->title}}</a></h5>
+                                    <h5><a href="{{ route('product-details.index', $popular_product->product->slug) }}">{{$popular_product->product->title}}</a></h5>
                                     <div class="price-box">
-                                       <span class="price">৳ {{$product->current_price}}</span>
-                                       @if($product->discount_percentage > 0)
-                                          <span class="old-price">৳ {{$product->selling_price}}</span>
+                                       <span class="price">৳ {{$popular_product->product->current_price}}</span>
+                                       @if($popular_product->product->discount_percentage > 0)
+                                          <span class="old-price">৳ {{$popular_product->product->selling_price}}</span>
                                        @endif
                                     </div>
-                                    <span class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    </span>
                                     <div class="hot-deals-button">
-                                       <button><i class="fa fa-plus"></i> Add to Cart</button>
-                                       <div class="hot-deals-button-2">
-                                          <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
-                                             class="fa fa-heart-o"></i></a>
-                                          <a href="#" data-bs-toggle="tooltip" title="Compare"><i
-                                             class="fa fa-signal"></i></a>
-                                       </div>
+                                       <button onclick="addToCart({{ $popular_product->product->id }})">
+                                          <i class="fa fa-plus"></i> Add to Cart
+                                       </button>
                                     </div>
                                  </div>
                               </div>
@@ -185,44 +161,33 @@
                <div role="tabpanel" class="tab-pane fade show active" id="display-1-1">
                   <div class="row">
                      <div class="active-product-carosel-style-2 owl-carousel">
-                        @foreach($products as $product)
+                        @foreach($best_products as $best_product)
                         <!-- Start Single-Product -->
                            <div class="col-12">
                               <div class="single-product style-2">
-                                 @if($product->discount_percentage > 0)
+                                 @if($best_product->product->discount_percentage > 0)
                                     <div class="sale-off">
-                                       <span class="sale-percent">-{{$product->discount_percentage}}%</span>
+                                       <span class="sale-percent">-{{$best_product->product->discount_percentage}}%</span>
                                     </div>
                                  @endif
                                  <div class="product-img">
                                     <a href="#">
-                                       <img class="primary-img" src="{{ asset($product->image)}}"
+                                       <img class="primary-img" src="{{ asset($best_product->product->image)}}"
                                        alt="Product">
                                     </a>
                                  </div>
                                  <div class="product-description">
-                                    <h5><a href="{{ route('product-details.index', $product->slug) }}">{{$product->title}}</a></h5>
+                                    <h5><a href="{{ route('product-details.index', $best_product->product->slug) }}">{{$best_product->product->title}}</a></h5>
                                     <div class="price-box">
-                                       <span class="price">৳ {{$product->current_price}}</span>
-                                       @if($product->discount_percentage > 0)
-                                          <span class="old-price">৳ {{$product->selling_price}}</span>
+                                       <span class="price">৳ {{$best_product->product->current_price}}</span>
+                                       @if($best_product->product->discount_percentage > 0)
+                                          <span class="old-price">৳ {{$best_product->product->selling_price}}</span>
                                        @endif
                                     </div>
-                                    <span class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    </span>
-                                    <div class="hot-deals-button">
-                                       <button><i class="fa fa-plus"></i> Add to Cart</button>
-                                       <div class="hot-deals-button-2">
-                                          <a href="#" data-bs-toggle="tooltip" title="Wishlist"><i
-                                             class="fa fa-heart-o"></i></a>
-                                          <a href="#" data-bs-toggle="tooltip" title="Compare"><i
-                                             class="fa fa-signal"></i></a>
-                                       </div>
+                                     <div class="hot-deals-button">
+                                       <button onclick="addToCart({{ $best_product->product->id }})">
+                                          <i class="fa fa-plus"></i> Add to Cart
+                                       </button>
                                     </div>
                                  </div>
                               </div>

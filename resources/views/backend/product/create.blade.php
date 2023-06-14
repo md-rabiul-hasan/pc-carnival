@@ -135,7 +135,7 @@ Product
             <div class="tile-body">
                <div id="related-products-container">
                   <div class="related-product">
-                     <select class="form-control select2" name="related_products[]" multiple id="related_products" required>
+                     <select class="form-control select2" name="related_products[]" multiple id="related_products">
                         <option value="">Search Product</option>
                      </select>
                   </div>
@@ -188,54 +188,31 @@ Product
    }
 
 
-
-function appendSelect2Value(products) {
-   console.log('products', products);
-   var selectElement = $('#related_products');
-
-   selectElement.select2({
-      minimumResultsForSearch: -1 // Hide the search input
-   });
-
-
-
-   // Parse the input array value
-   var inputArray = products;
-   console.log("inputArray", inputArray);
-
-   // Append options using the input array
-   inputArray.forEach(function(item) {
-      var option = new Option(item.title, item.id);
-      selectElement.append(option);
-      selectElement.trigger('change');
-   });
-}
-
 $(document).ready(function(){
 
    $("#related_products").select2({
       ajax: {
-      url: "search-related-product",
-      type: "post",
-      dataType: 'json',
-      delay: 250,
-      data: function (params) {
-         return {
-            searchTerm: params.term // search term
-         };
-      },
-      headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+         url: "{{ route('admin.search.select2.product') }}",
+         type: "post",
+         dataType: 'json',
+         delay: 250,
+         data: function (params) {
+            return {
+               searchTerm: params.term // search term
+            };
          },
-      processResults: function (response) {
-         return {
-            results: response
-         };
-      },
-      cache: true
-      }
+         headers: {
+               'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+         processResults: function (response) {
+            return {
+               results: response
+            };
+         },
+         cache: true
+         }
+      });
    });
-});
 
 
 

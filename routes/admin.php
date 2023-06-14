@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminHomeController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\HomePageProductController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\Select2ProductSearchController;
 use App\Http\Controllers\Backend\SubCategoryController;
 
 // Group all admin routes together
@@ -30,8 +32,13 @@ Route::group([
 
     // Route for managing products
     Route::resource('product', ProductController::class);
-    Route::post('product/search-related-product', [ProductController::class, 'searchRelatedProduct']);
+    Route::post('product/search-related-product', [Select2ProductSearchController::class, 'select2SearchProduct'])->name('search.select2.product');
 
     // Route to find sub-categories for a product
     Route::get('product/find-sub-category/{id}', [ProductController::class, 'findSubCategory'])->name('product.find_sub_category');
+
+    // Home Page Product Setup
+    Route::get('/home-page-product/list', [HomePageProductController::class, 'index'])->name('home-page-product.index');
+    Route::get('/home-page-product/create', [HomePageProductController::class, 'create'])->name('home-page-product.create');
+    Route::post('/home-page-product/store', [HomePageProductController::class, 'store'])->name('home-page-product.store');
 });
