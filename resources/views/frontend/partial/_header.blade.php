@@ -92,7 +92,8 @@
                       </ul>
                       <!-- End Language -->
                       <div class="ht-item search welcome-msg" id="search">
-                          <input type="text" name="search" placeholder="Search" autocomplete="off"><div class="dropdown-menu" style="display: none;">
+                        <input type="text" id="searchInput" name="search" value="{{ Request::get('search') }}" placeholder="Search" autocomplete="off">
+                        <div class="dropdown-menu" style="display: none;">
                               <div class="search-details">
                                   <ul class="nav nav-tabs">
                                       <li data-tab="tab-prod" class="active">Products</li>
@@ -114,7 +115,13 @@
                    <!-- Start Top-Link -->
                    <div class="top-link">
                       <ul class="link">
-                         <li><a href="{{ route('cart.index')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                        <li>
+                           <a href="{{ route('cart.index') }}" style="position: relative">
+                               <i class="fa fa-shopping-cart"></i> 
+                               Cart
+                               <span class="badge" id="cart_badge">{{ $cartItemCount ?? 0 }}</span>
+                           </a>
+                       </li>
                          @if(!Auth::check())
                            <li><a href="checkout.html"><i class="fa fa-user"></i> Login</a></li>
                          @else 
@@ -216,3 +223,5 @@
        <!-- End Mobile-menu -->
     </header>
     <!-- HEADER AREA END -->
+
+    

@@ -62,7 +62,7 @@
                         <!-- Start Product-Menu -->
                         <div class="product-menu">
                             <div class="product-title">
-                                <h3 class="title-group-3 g1nt-1">cameras & photography</h3>
+                                <h3 class="title-group-3 g1nt-1">Product Searching</h3>
                             </div>
                         </div>
                         <div class="product-filter">
@@ -131,7 +131,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="product-button">
-                                                            <button><i class="fa fa-shopping-cart"></i> Add to
+                                                            <button onclick="addToCart({{ $product->id }})"><i class="fa fa-shopping-cart"></i> Add to
                                                                 Cart</button>
                                                         </div>
                                                     </div>

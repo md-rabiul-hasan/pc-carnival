@@ -168,15 +168,38 @@ aria-hidden="true">
                   })
                   .then(function(response) {
                         toastr.success("This product has been added to your cart", 'Success');
+                        getCartCount(); // Update cart count
                   })
                   .catch(function(error) {
                         if (error.response) {
                            toastr.error(error.response.data.error, 'Error');
+                           
                         } else {
                            toastr.error("Product add to cart Failed", 'Error');
                         }
                   });
             }
+            function getCartCount() {
+               axios.get('{{ route("cart.count") }}')
+                  .then(function(response) {
+                     $('#cart_badge').text(response.data.count);
+                  })
+                  .catch(function(error) {
+                  });
+            }
+         </script>
+
+         <script>
+            $(function() {
+               $('#searchInput').keypress(function(event) {
+                  if (event.keyCode === 13) { // 13 is the keycode for Enter key
+                     event.preventDefault(); // Prevent form submission
+                     var searchData = $(this).val();
+                     // Redirect to another route with the specific data
+                     window.location.href = '/product-filter?search=' + encodeURIComponent(searchData);
+                  }
+               });
+            });
          </script>
 
 

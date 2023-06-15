@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class CartController extends Controller
 {
     public function index(){           
@@ -15,6 +15,13 @@ class CartController extends Controller
         ];
         
         return view('frontend.pages.cart.index', $data);
+    }
+
+    public function cartItemCount(){
+        $cart = session('cart', []);
+        $count = count($cart);
+    
+        return response()->json(['count' => $count]);
     }
 
     public function addToCart(Request $request)
@@ -49,6 +56,25 @@ class CartController extends Controller
         
         // Return a success message
         return response()->json(['message' => 'Product added to cart'], 200);
+    }
+
+    public function removeFromCart(Request $request){
+        $product_id = $request->input('product_id');
+        $cart = session()->get('cart', []);
+        
+        if (isset($cart[$product_id])) {
+            // Remove the cart item
+            unset($cart[$product_id]);
+            
+            // Update the cart in the session
+            session()->put('cart', $cart);
+            
+            // Return a success response
+            return response()->json(['message' => 'Product removed from cart'], 200);
+        }
+        
+        // Return an error response if the cart item doesn't exist
+        return response()->json(['error' => 'Cart item not found'], 404);
     }
     
 

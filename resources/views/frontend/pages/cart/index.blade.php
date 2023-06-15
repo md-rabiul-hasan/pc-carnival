@@ -34,7 +34,7 @@
                                     @php $total = 0; @endphp
                                     @foreach($cart_items as $item)
                                     @php $total += $item['price'] * $item['quantity']; @endphp
-                                    <tr>
+                                    <tr id="cart_single_product_{{ $item['id']}}">
                                         <td class="text-center rs-none"> <a
                                                 href="{{ route('product-details.index', $item['slug']) }}"><img
                                                     src="{{ $item['image'] }}"
@@ -51,8 +51,11 @@
                                                 <input type="text"
                                                     name="quantity"
                                                     value="{{ $item['quantity'] }}" size="1" class="form-control cart-input">
-                                                <span>
-                                                    <button type="button"   class="btn btn-danger btn-sm"> <i class="fa fa-trash cart-item-remove"></i></button></span>
+                                                    <span>
+                                                        <button type="button" class="btn btn-danger btn-sm cart-item-remove" onclick="removeFromCart({{ $item['id'] }})">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </span>
                                             </div>
                                         </td>
                                         <td class="text-right rs-none">{{ $item['price'] }}৳</td>
@@ -94,3 +97,26 @@
 </div>
 
 @endsection
+
+@push('js')
+<script>
+    function removeFromCart(id) {
+        axios.post('{{ route("cart.remove_to_cart") }}', {
+                product_id: id
+            })
+            .then(function(response) {
+                toastr.success("Product removed from cart", 'Success');
+                $("#cart_single_product_"+id).hide();
+                getCartCount(); // Update cart count
+            })
+            .catch(function(error) {
+                if (error.response) {
+                    toastr.error(error.response.data.error, 'Error');
+                } else {
+                    toastr.error("Product removed from cart Failed", 'Error');
+                }
+            });
+    }
+</script>
+
+@endpush

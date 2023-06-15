@@ -1194,3 +1194,13 @@ td.product-info-label {
     color:#000;
     text-decoration: none;
 }
+.badge {
+    color: #6C2F3A;
+    border-radius: 50%;
+    font-size: 9px;
+    margin-left: 5px;
+    position: absolute;
+    background: white;
+    right: 3%;
+    top: 20%;
+}
