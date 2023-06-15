@@ -197,7 +197,7 @@
 									@foreach($relatedProducts as $relatedProduct)
 										<div class="p-s-item">
 											<div class="image-holder">
-												<a href="{{ route('product.details', $relatedProduct->slug)}}">
+												<a href="{{ route('product-details.index', $relatedProduct->slug)}}">
 													<img
 														src="{{ asset($relatedProduct->image) }}"
 														alt="{{ $relatedProduct->title }}" width="80"
