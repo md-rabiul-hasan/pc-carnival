@@ -29,6 +29,7 @@ class CreateProductsTable extends Migration
             $table->text('key_features');
             $table->text('specifications')->nullable();
             $table->text('description')->nullable();
+            $table->text('questions')->nullable();
             $table->boolean('is_pc_build')->default(false);
             $table->enum("availability", ["pre_order", "in_stock", "out_of_stock"])->default("in_stock");
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');

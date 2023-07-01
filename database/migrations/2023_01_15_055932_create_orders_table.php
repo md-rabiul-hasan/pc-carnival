@@ -15,12 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_number')->unique();
             $table->unsignedBigInteger('user_id');            
             $table->double('total_order', 20, 2)->default(0.00);
             $table->double('delivery_charge', 10,2)->default(0.00);
             $table->double('total_bill', 20, 2)->default(0.00);
             $table->enum('payment_mode', ['cash_on_delivery']);
-            $table->text('shipment_address');
             $table->integer('status')->default(0)->comment('0: order pending, 1: order shipped, 2: order delivered, 3: order canceled');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

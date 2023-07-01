@@ -69,6 +69,10 @@ Product
                     <td>{{ $product->discount_percentage }}%</td>
                   </tr>
                   <tr>
+                    <th>Tags</th>
+                    <td>{{ $product->tags }}</td>
+                  </tr>
+                  <tr>
                     <th>Key Features</th>
                     <td>{!! $product->key_features !!}</td>
                   </tr>
@@ -79,6 +83,10 @@ Product
                   <tr>
                     <th>Description</th>
                     <td>{!! $product->description !!}</td>
+                  </tr>
+                  <tr>
+                    <th>Questions</th>
+                    <td>{!! $product->questions !!}</td>
                   </tr>
                   <tr>
                     <th>Image</th>
@@ -102,7 +110,7 @@ Product
                         <ul>
                           @foreach($relatedProducts as $relatedProduct)
                             <li>
-                              <label>{{ $relatedProduct->title }}</label>
+                              <label>{{ $relatedProduct->title }}</label><br>
                               <img class="img-thumbnail" style="cursor: pointer" onclick="imagePreviewModal('{{ asset($relatedProduct->image) }}')" alt="200x200" width="200" src="{{ asset($relatedProduct->image) }}" data-holder-rendered="true">
                             </li>
                           @endforeach

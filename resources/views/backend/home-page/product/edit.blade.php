@@ -30,7 +30,7 @@ Home Page Product Setup
 </div>
 @endsection
 @section('content')
-<form action="{{ route('admin.home-page-product.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.home-page-product.update') }}" method="POST" enctype="multipart/form-data">
    <div class="row">
       @csrf
       <div class="col-md-12">
@@ -41,6 +41,9 @@ Home Page Product Setup
                   <div class="related-product">
                      <select class="form-control select2" name="latest_products[]" multiple id="latest_products" required>
                         <option value="">Search Product</option>
+                        @foreach($latest_products as $latest_product)
+                           <option value="{{ $latest_product->product->id }}" selected>{{ $latest_product->product->title }}</option>
+                        @endforeach
                      </select>
                   </div>
                </div>               
@@ -55,6 +58,9 @@ Home Page Product Setup
                  <div class="related-product">
                     <select class="form-control select2" name="popular_products[]" multiple id="popular_products" required>
                        <option value="">Search Product</option>
+                       @foreach($popular_products as $popular_product)
+                           <option value="{{ $popular_product->product->id }}" selected>{{ $popular_product->product->title }}</option>
+                        @endforeach
                     </select>
                  </div>
               </div>               
@@ -69,6 +75,9 @@ Home Page Product Setup
                  <div class="related-product">
                     <select class="form-control select2" name="best_seller_products[]" multiple id="best_seller_products" required>
                        <option value="">Search Product</option>
+                       @foreach($best_seller_products as $best_seller_product)
+                           <option value="{{ $best_seller_product->product->id }}" selected>{{ $best_seller_product->product->title }}</option>
+                        @endforeach
                     </select>
                  </div>
               </div>               
@@ -79,7 +88,7 @@ Home Page Product Setup
    <div class="tile-footer">            
       <button class="btn btn-danger" type="reset"><i class="fa fa-fw fa-lg fa-times-circle"></i>Reset</button>
       &nbsp;&nbsp;&nbsp;
-      <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>
+      <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update</button>
    </div>
 </form>
 @endsection

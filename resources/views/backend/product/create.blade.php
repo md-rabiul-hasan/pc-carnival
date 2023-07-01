@@ -10,10 +10,16 @@
 Product
 @endsection
 @push('css')
+  <!-- CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.css">
+
    <style>
       .add-more-field {
          display: flex;
          justify-content: space-between;
+      }
+      .bootstrap-tagsinput {
+         width: 100%!important;
       }
    </style>
 @endpush
@@ -99,6 +105,10 @@ Product
                   <span id="current_price_in_word" style="text-transform:capitalize; color:red; font-weight:bold"></span>
                </div>
                <div class="form-group">
+                  <label class="control-label">Tags For Searching Faster</label><br>
+                  <input class="form-control" type="text"  name="tags" id="tagsInput" style="width: 100%!important">
+               </div>
+               <div class="form-group">
                 <label class="control-label">Gallery (Upload Multiple Image)</label>
                 <input class="form-control" type="file" multiple name="image[]">
              </div>
@@ -121,6 +131,11 @@ Product
                   <label class="control-label">Description <span style="color:red;">**</span></label>
                   <textarea class="form-control" id="editor3" rows="3" name="description"></textarea>
                </div>  
+               
+               <div class="form-group">
+                  <label class="control-label">Questions <span style="color:red;"></span></label>
+                  <textarea class="form-control" id="editor4" rows="3" name="questions"></textarea>
+               </div> 
                <div class="form-check">
                   <label class="form-check-label">
                     <input class="form-check-input" name="is_pc_build" type="checkbox"> PC build available this product ? 
@@ -154,6 +169,10 @@ Product
 @push('js')
 <script type="text/javascript" src="{{ asset('backend/assets/js/plugins/select2.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('backend/assets/js/amount_calculate.js')}}"></script>
+
+<!-- JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.min.js"></script>
+
 <script>
    // Initialize Select2 plugin
    $('.select2').select2();
@@ -218,4 +237,13 @@ $(document).ready(function(){
 
 
 </script>
+<script>
+   $(document).ready(function() {
+      $('#tagsInput').tagsinput({
+         tagClass: 'badge badge-primary',
+         trimValue: true
+      });
+   });
+</script>
+
 @endpush

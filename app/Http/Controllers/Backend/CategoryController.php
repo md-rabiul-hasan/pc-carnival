@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $category->slug        = Str::slug($request->input('title'));
         $category->image       = $this->imageUpload($request->file('image'), "storage/category/");
         $category->save();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('message','Category added Successfully');
     }
 
     /**
@@ -88,7 +88,7 @@ class CategoryController extends Controller
         $category->slug        = Str::slug($request->input('title'));
         $category->image       = $this->imageRemoveAndUpload($category->image, $request->file('image'), "storage/category/");
         $category->save();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('message','Category updated Successfully');
     }
 
     /**

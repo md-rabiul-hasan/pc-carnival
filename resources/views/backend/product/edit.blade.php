@@ -1,7 +1,11 @@
 @extends('backend.layouts')
 @push('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.css">
 <style>
    .select2 {
+      width: 100%!important;
+   }
+   .bootstrap-tagsinput {
       width: 100%!important;
    }
 </style>
@@ -97,6 +101,10 @@ Product
                   <span id="current_price_in_word" style="text-transform:capitalize; color:red; font-weight:bold"></span>
                </div>
                <div class="form-group">
+                  <label class="control-label">Tags For Searching Faster</label><br>
+                  <input class="form-control" type="text" value="{{ $product->tags }}"  name="tags" id="tagsInput" style="width: 100%!important">
+               </div>
+               <div class="form-group">
                   <label class="control-label">Gallery (Upload Multiple Image)</label>
                   <br>
                   @foreach($product->images as $image)
@@ -104,6 +112,21 @@ Product
                   @endforeach
                   <input class="form-control mt-3" type="file" multiple name="image[]">
                </div>
+            </div>
+         </div>
+         <div class="tile">
+            <h3 class="tile-title">Add Related Products</h3>
+            <div class="tile-body">
+               <div id="related-products-container">
+                  <div class="related-product">
+                     <select class="form-control select2" name="related_products[]" multiple id="related_products">
+                        <option value="">Search Product</option>
+                        @foreach($relatedProducts as $relatedProduct)
+                           <option value="{{ $relatedProduct->id }}" selected>{{ $relatedProduct->title }}</option>
+                        @endforeach
+                     </select>
+                  </div>
+               </div>               
             </div>
          </div>
       </div>
@@ -123,6 +146,10 @@ Product
                   <label class="control-label">Description <span style="color:red;">**</span></label>
                   <textarea class="form-control" id="editor3" rows="3" name="description">{{ $product->description }}</textarea>
                </div> 
+               <div class="form-group">
+                  <label class="control-label">Questions <span style="color:red;"></span></label>
+                  <textarea class="form-control" id="editor4" rows="3" name="questions">{{ $product->questions }}</textarea>
+               </div> 
                <div class="form-check">
                   <label class="form-check-label">
                     <input class="form-check-input" name="is_pc_build" type="checkbox" @if ($product->is_pc_build == 1) checked @endif> PC build available this product ? 
@@ -130,7 +157,7 @@ Product
                 </div>               
             </div>
          </div>
-      </div>
+      </div> 
    </div>
    <div class="tile-footer">            
       <button class="btn btn-danger" type="reset"><i class="fa fa-fw fa-lg fa-times-circle"></i>Reset</button>
@@ -142,6 +169,7 @@ Product
 @push('js')
 <script type="text/javascript" src="{{ asset('backend/assets/js/plugins/select2.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('backend/assets/js/amount_calculate.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.6.0/bootstrap-tagsinput.min.js"></script>
 <script>
    $('.select2').select2();
 
@@ -169,5 +197,40 @@ Product
    function sellingPriceInWord(){
       $("#selling_price_in_word").html(inWords($("#selling_price").val()));
    }
+
+   $(document).ready(function(){
+
+      $("#related_products").select2({
+         ajax: {
+            url: "{{ route('admin.search.select2.product') }}",
+            type: "post",
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+               return {
+                  searchTerm: params.term // search term
+               };
+            },
+            headers: {
+                  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+               },
+            processResults: function (response) {
+               return {
+                  results: response
+               };
+            },
+            cache: true
+         }
+      });
+   });
+
+</script>
+<script>
+   $(document).ready(function() {
+      $('#tagsInput').tagsinput({
+         tagClass: 'badge badge-primary',
+         trimValue: true
+      });
+   });
 </script>
 @endpush

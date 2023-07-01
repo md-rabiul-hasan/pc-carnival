@@ -25,14 +25,30 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $searchTerm = $request->input('search');
+
+        $query = Product::orderBy('id', 'desc');
+
+        if (!empty($searchTerm)) {
+            $query->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('tags', 'LIKE', '%' . $searchTerm . '%');
+            });
+        }
+
+        $products = $query->paginate(10); // Change the number according to your preference
+
         $data = [
             "sl" => 1,
-            "products" => Product::all()
+            "products" => $products
         ];
+
         return view('backend.product.index', $data);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -77,6 +93,8 @@ class ProductController extends Controller
         $product->key_features        = $request->input('key_features');
         $product->specifications      = $request->input('specifications');
         $product->description         = $request->input('description');
+        $product->questions         = $request->input('questions');
+        $product->tags         = $request->input('tags');
         $product->availability        = $request->input('availability');
         $product->is_pc_build         = $request->input('is_pc_build') == 'on' ? 1 : 0;
         $product->save();
@@ -103,7 +121,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')->with('message','Product Added Successfully');
     }
 
     /**
@@ -136,13 +154,21 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $relatedProductIds = DB::table('related_products')->where('product_id', $product->id)->pluck('related_product_id');
+    
+        $relatedProducts = DB::table('products')
+            ->select('id', 'title', 'image', 'slug')
+            ->whereIn('id', $relatedProductIds)
+            ->get();
         $data = [
-            "product"        => $product,
-            "brands"         => Brand::select(['id', 'title'])->get(),
-            "categories"     => Category::select(['id', 'title'])->get(),
-            "sub_categories" => SubCategory::select(['id', 'title'])->where('category_id', $product->category_id)->get()
+            "product"         => $product,
+            "brands"          => Brand::select(['id', 'title'])->get(),
+            "categories"      => Category::select(['id', 'title'])->get(),
+            "relatedProducts" => $relatedProducts,
+            "sub_categories"  => SubCategory::select(['id', 'title'])->where('category_id', $product->category_id)->get()
 
         ];
+
         return view('backend.product.edit', $data);
     }
 
@@ -155,6 +181,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+
         $product->brand_id            = $request->input('brand_id');
         $product->category_id         = $request->input('category_id');
         $product->sub_category_id     = $request->input('sub_category_id');
@@ -168,6 +195,7 @@ class ProductController extends Controller
         $product->discount_percentage = $request->input('discount_percentage');
         $product->key_features        = $request->input('key_features');
         $product->specifications      = $request->input('specifications');
+        $product->questions         = $request->input('questions');
         $product->description         = $request->input('description');
         $product->is_pc_build         = $request->input('is_pc_build') == 'on' ? 1 : 0;
         $product->save();
@@ -183,8 +211,19 @@ class ProductController extends Controller
             }
         }
 
+        if ($request->has('related_products')) {
+            $related_products = $request->input('related_products');
+            RelatedProduct::where('product_id', $product->id)->delete();
+            foreach ($related_products as $related_product) {
+                $relatedProduct = new RelatedProduct();
+                $relatedProduct->product_id = $product->id;
+                $relatedProduct->related_product_id = $related_product;
+                $relatedProduct->save();
+            }
+        }
+
         
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')->with('message','Product Updated Successfully');;
     }
 
     /**

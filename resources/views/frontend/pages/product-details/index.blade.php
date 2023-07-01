@@ -1,6 +1,17 @@
 @extends('frontend.layouts')
 @section('page-title', 'product-details')
 
+@push('css')
+	<style>
+		a.tag-btn {
+			background: #6C2F3A;
+			padding: 5px;
+			border-radius: 6%;
+			color: white;
+		}
+	</style>
+@endpush
+
 @section('frontend-content')
 <section class="page-content product-details">
 
@@ -73,7 +84,14 @@
 							<meta itemprop="price" content="23399.0000">
 							<h2>Key Features</h2>
 							{!! $product->key_features !!}
-
+							@if(isset($product->tags))
+								@php 
+									$tags = explode(",", $product->tags);
+								@endphp
+								@foreach($tags as $tag)
+									<a href="{{ route('product-filter.index', ['search' => $tag]) }}" class="tag-btn">{{ $tag }}</a>
+								@endforeach
+							@endif
 						</div>
 						<h2 class="price-h2">Price</h2>
 						<div>
@@ -83,15 +101,13 @@
 						</div>
 						<div class="cart-option">
 							<label class="quantity">
-								<span class="ctl"><i class="fa fa-minus"></i></span>
+								<span class="ctl decrement" style="cursor: pointer"><i class="fa fa-minus"></i></span>
 								<span class="qty"><input type="text" name="quantity" id="input-quantity" value="1"
-										size="2"></span>
-								<span class="ctl increment"><i class="fa fa-plus"></i></span>
-								<input type="hidden" name="product_id" value="26146">
+										readonly></span>
+								<span class="ctl increment" style="cursor: pointer"><i class="fa fa-plus"></i></span>
 							</label>
 							<button id="button-cart" class="btn btn-primary submit-btn"
-								data-loading-text="Loading...">Buy
-								Now</button>
+								data-loading-text="Loading..." onclick="addToCartItems({{$product->id}})">Add to Cart</button>
 						</div>
 					</div>
 				</div>
@@ -116,12 +132,12 @@
 										<li data-area="description">
 											<a href="#description" class="redirect-text">Description</a>
 										</li>
-										<li class="hidden-xs" data-area="ask-question">
-											<a href="#question" class="redirect-text">Questions</a>
-										</li>
-										<li data-area="write-review">
-											<a href="#review" class="redirect-text">Reviews</a>
-										</li>
+										@if(!empty($product->questions))
+											<li class="hidden-xs" data-area="ask-question">
+												<a href="#question" class="redirect-text">Questions</a>
+											</li>
+										@endif
+										
 									</ul>
 								</div>
 
@@ -144,50 +160,22 @@
 										{!! $product->description !!}
 									</div>
 								</section>
-								<section class="ask-question q-n-r-section bg-white m-tb-15" id="ask-question">
-									<div class="section-head">
-										<div class="title-n-action">
-											<h2>Questions</h2>
-											<p class="section-blurb">Have question about this product? Get specific
-												details about this product from expert.</p>
+								@if(!empty($product->questions))
+									<section class="ask-question q-n-r-section bg-white m-tb-15" id="ask-question">
+										<div class="section-head">
+											<div class="title-n-action">
+												<h2>Questions</h2>
+												<p class="section-blurb">Have question about this product? Get specific
+													details about this product from expert.</p>
+											</div>										
 										</div>
-										<div class="q-action">
-											<a href="#"
-												class="btn st-outline">Ask Question</a>
-										</div>
-									</div>
-									<div id="question">
-										<div class="empty-content">
-											<span class="icon material-icons">
-												<i class="question-icon fa fa-commenting"></i>
-											</span>
-											<div class="empty-text">There are no questions asked yet. Be the first
-												one to ask a question.</div>
-										</div>
-									</div>
-								</section>
-								<section class="review  q-n-r-section bg-white m-tb-15" id="write-review">
-									<div class="section-head">
-										<div class="title-n-action">
-											<h2>Reviews</h2>
-											<p class="section-blurb">Get specific details about this product from
-												customers who own it.</p>
-											<div class="average-rating">
+										<div id="question">
+											<div class="description-content">
+												<div>{!! $product->questions !!}</div>
 											</div>
 										</div>
-										<div class="q-action">
-											<a href="#"
-												class="btn st-outline">Write a Review</a>
-										</div>
-									</div>
-									<div id="review">
-										<div class="empty-content">
-											<span class="icon material-icons"><i class="question-icon fa fa-star"></i></span>
-											<div class="empty-text">This product has no reviews yet. Be the first
-												one to write a review.</div>
-										</div>
-									</div>
-								</section>
+									</section>
+								@endif
 							</div>
 							@if(count($relatedProducts) > 0)
 							<div class="col-lg-3 col-md-12 c-left">
@@ -232,3 +220,38 @@
 
 </section>
 @endsection
+
+
+@push('js')
+	<script>
+		$(document).ready(function() {
+			$('.increment').click(function() {
+				var input = $('#input-quantity');
+				var value = parseInt(input.val());
+
+				if (!isNaN(value)) {
+					input.val(value + 1);
+				}
+			});
+
+			$('.decrement').click(function() {
+				var input = $('#input-quantity');
+				var value = parseInt(input.val());
+
+				if (!isNaN(value) && value > 1) {
+					input.val(value - 1);
+				}
+			});
+		});
+
+
+		function addToCartItems(product_id){
+			var input = $('#input-quantity');
+			var value = parseInt(input.val());
+
+			if (!isNaN(value)) {
+				addToCart(product_id, value);
+			}
+		}
+	</script>
+@endpush

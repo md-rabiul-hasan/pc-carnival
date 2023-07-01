@@ -3,6 +3,22 @@
 Product
 @endsection
 
+@push('css')
+  <style>
+  input#searchProduct {
+    padding: 9px 58px;
+    position: absolute;
+    right: 1%;
+  }
+  span.relative.z-0.inline-flex.shadow-sm.rounded-md {
+    display: none;
+  }
+  .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
+      margin-top: 10px;
+  }
+  </style>
+@endpush
+
 @section('breadcrumb')
 <div class="app-title">
     <div>
@@ -19,6 +35,7 @@ Product
 @section('content')
 
 <a href="{{ route('admin.product.create')}}" class="btn btn-primary mb-3"> <i class="fa fa-plus"></i> Add New</a>
+<input type="search" name="search" id="searchProduct" value="">
 
 <div class="row">
     <div class="col-md-12">
@@ -57,17 +74,24 @@ Product
 
               </tbody>
             </table>
+
+            
+
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-md-12">
+      <div>
+<!-- Render the pagination links -->
+{{ $products->links() }}
+      </div>
+      
     </div>
   </div>
 @endsection
 
 @push('js')
-    <!-- Data table plugin-->
-    <script type="text/javascript" src="{{ asset('backend/assets/js/plugins/jquery.dataTables.min.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('backend/assets/js/plugins/dataTables.bootstrap.min.js')}}"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <script>
       function deleteProduct(id){
@@ -98,4 +122,29 @@ Product
         })        
       }
     </script>
+
+<script>
+  $(document).ready(function() {
+     $('#searchProduct').on('keypress', function(event) {
+        if (event.keyCode === 13) { // Enter key
+           event.preventDefault();
+           var searchTerm = $(this).val().trim();
+           if (searchTerm !== '') {
+              updateURLAndReload(searchTerm);
+           }
+        }
+     });
+
+     function updateURLAndReload(searchTerm) {
+        let currentURL = window.location.href;
+        let updatedURL = new URL(currentURL);
+        updatedURL.searchParams.set('search', searchTerm);
+        let newURL = updatedURL.toString();
+        
+        window.location.href = newURL;
+     }
+  });
+</script>
+
+
 @endpush

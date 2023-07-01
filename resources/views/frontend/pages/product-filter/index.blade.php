@@ -84,7 +84,7 @@
                             <div class="limit">
                                 <label>Show:</label>
                                 <select id="itemsPerPage">
-                                    <option value="2" {{ Request::get('items') == '2' ? 'selected' : '' }}>2</option>
+                                    <option value="8" {{ Request::get('items') == '8' ? 'selected' : '' }}>8</option>
                                     <option value="16" {{ Request::get('items') == '16' ? 'selected' : '' }}>16</option>
                                     <option value="24" {{ Request::get('items') == '24' ? 'selected' : '' }}>24</option>
                                     <option value="40" {{ Request::get('items') == '40' ? 'selected' : '' }}>40</option>
@@ -117,7 +117,7 @@
                                                     </div>
                                                     @endif
                                                     <div class="product-img">
-                                                        <a href="#">
+                                                        <a href="{{ route('product-details.index', $product->slug)}}">
                                                             <img class="primary-img" src="{{ asset($product->image)}}"
                                                                 alt="Product">
                                                         </a>

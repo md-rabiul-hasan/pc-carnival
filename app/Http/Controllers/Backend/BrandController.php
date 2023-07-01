@@ -51,7 +51,7 @@ class BrandController extends Controller
         $brand->description = $request->input('description');
         $brand->image       = $this->imageUpload($request->file('image'), "storage/brands/");
         $brand->save();
-        return redirect()->route('admin.brand.index');
+        return redirect()->route('admin.brand.index')->with('message','Brand added Successfully');;
     }
 
     /**
@@ -90,7 +90,7 @@ class BrandController extends Controller
         $brand->description = $request->input('description');
         $brand->image       = $this->imageRemoveAndUpload($brand->image, $request->file('image'), "storage/brands/");;
         $brand->save();
-        return redirect()->route('admin.brand.index');
+        return redirect()->route('admin.brand.index')->with('message','Brand updated Successfully');;
     }
 
     /**

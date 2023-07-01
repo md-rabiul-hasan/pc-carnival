@@ -17,9 +17,11 @@ Home Page Setup
 @endsection
 
 @section('content')
-
-<a href="{{ route('admin.home-page-product.create')}}" class="btn btn-primary mb-3"> <i class="fa fa-plus"></i> Add New</a>
-
+@if(count($home_page_products) == 0)
+  <a href="{{ route('admin.home-page-product.create')}}" class="btn btn-primary mb-3"> <i class="fa fa-plus"></i> Add New</a>
+@else
+<a href="{{ route('admin.home-page-product.edit')}}" class="btn btn-primary mb-3"> <i class="fa fa-pencil"></i> Update</a>
+@endif
 <div class="row">
     <div class="col-md-12">
       <div class="tile">

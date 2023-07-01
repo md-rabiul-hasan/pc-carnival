@@ -22,6 +22,8 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/main.css')}}">
     <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" 
+     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('backend/assets/js/cute-alert/style.css') }}" />
     <style>

@@ -8,15 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class Select2ProductSearchController extends Controller
 {
-    public function select2SearchProduct(Request $request){
-        if(!empty($request->input("searchTerm"))){
+    public function select2SearchProduct(Request $request)
+    {
+        if (!empty($request->input("searchTerm"))) {
             $products = DB::table('products')
-            ->select('id', 'title as text')
-            ->where('title', 'LIKE', '%' . $request->searchTerm . '%')
-            ->get();    
+                ->select('id', 'title as text')
+                ->where('title', 'LIKE', '%' . $request->searchTerm . '%')
+                ->orWhere('tags', 'LIKE', '%' . $request->searchTerm . '%')
+                ->get();
             return response()->json($products);
-        }else {
+        } else {
             return response()->json([]);
         }
     }
+
 }

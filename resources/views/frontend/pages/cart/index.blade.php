@@ -51,10 +51,8 @@
                                                 <input type="text"
                                                     name="quantity"
                                                     value="{{ $item['quantity'] }}" size="1" class="form-control cart-input">
-                                                    <span>
-                                                        <button type="button" class="btn btn-danger btn-sm cart-item-remove" onclick="removeFromCart({{ $item['id'] }})">
+                                                    <span class="cart-remove-trash" onclick="removeFromCart({{ $item['id'] }})">
                                                             <i class="fa fa-trash"></i>
-                                                        </button>
                                                     </span>
                                             </div>
                                         </td>

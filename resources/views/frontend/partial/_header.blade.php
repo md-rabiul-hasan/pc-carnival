@@ -62,6 +62,48 @@
             background-color: red;
             color: white;
          }
+         /* Dropdown styles */
+.drop .drop-toggle {
+  position: relative!important;
+}
+
+.drop .drop-menu {
+  position: absolute;
+  display: none;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  background-color: white!important;
+  text-align: left;
+  border: 1px solid #ccc!important;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.drop .drop-menu li {
+  position: relative;
+}
+
+.drop .drop-menu li a {
+  display: block;
+  padding: 5px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333!important;
+  white-space: nowrap;
+}
+
+.drop .drop-menu li a{
+  background-color: #f5f5f5!important;
+  color: #333!important;
+}
+
+.drop:hover .drop-menu {
+  display: block;
+}
+
       </style>
       @stack('css')
    </head>
@@ -93,22 +135,13 @@
                       <!-- End Language -->
                       <div class="ht-item search welcome-msg" id="search">
                         <input type="text" id="searchInput" name="search" value="{{ Request::get('search') }}" placeholder="Search" autocomplete="off">
-                        <div class="dropdown-menu" style="display: none;">
-                              <div class="search-details">
-                                  <ul class="nav nav-tabs">
-                                      <li data-tab="tab-prod" class="active">Products</li>
-                                      <li data-tab="tab-cat">Categories</li>
-                                  </ul>
-                                  <div id="tab-prod" class="search-results" style="display: block;"></div>
-                                  <div id="tab-cat" class="search-results" style="display: none;"></div>
-                              </div>
-                          </div>
+                        
                       </div>
                    </div>
                       <!-- Start Top-Link -->
                       <div class="top-link">
                           <ul class="pc_build_ul">
-                             <li class="pc-build"><a href="account.html"><i class="fa fa-desktop"></i> &nbsp; PC Build</a></li>
+                             <li class="pc-build"><a href="{{ route("pc-build.index") }}"><i class="fa fa-desktop"></i> &nbsp; PC Build</a></li>
                           </ul>
                        </div>
                        <!-- End Top-Link -->
@@ -123,10 +156,24 @@
                            </a>
                        </li>
                          @if(!Auth::check())
-                           <li><a href="checkout.html"><i class="fa fa-user"></i> Login</a></li>
+                           <li><a href="{{ route('auth.signin') }}"><i class="fa fa-user"></i>Login</a></li>
                          @else 
-                           <li><a href="checkout.html"><i class="fa fa-user"></i>My Account</a></li>
-                         @endif
+                         <li class="drop">
+                           <a href="javascript:void(0);" class="drop-toggle" data-toggle="dropdown">
+                             <i class="fa fa-user"></i>{{ \Illuminate\Support\Str::limit(Auth::user()->name, 8, '..') }}
+                             <span class="caret"></span>
+                           </a>
+                           <ul class="drop-menu">
+                             <li><a href="{{ route('manage.order') }}">Manage Order</a></li>
+                             <li><a href="#"
+                              onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Logout</a></li>
+                                            <form id="logout-form" action="{{ route('auth.registration.logout') }}" method="POST" class="d-none">
+                                             @csrf
+                                         </form>
+                           </ul>
+                         </li>
+                         @endif                         
                          
                       </ul>
                    </div>
@@ -145,35 +192,26 @@
                    <div class="mainmenu d-lg-block d-none">
                       <nav>
                          <ul>
-                            <li>
-                               <a href="index.html">Category</a>
-                               <ul>
-                                  <li><a href="index.html">Sub-Category</a></li>
-                                  <li><a href="index-2.html">Home Versions 2</a>
-                                      <ul>
-                                          <li><a href="index.html">Sub-Category</a></li>
-                                          <li><a href="index-2.html">Home Versions 2</a></li>
-                                       </ul>
-                                  </li>
-                               </ul>
-                            </li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="shop.html">Bestseller Products</a></li>
-                            <li><a href="shop-list.html">New Products</a></li>
-                            <li>
-                               <a href="#">Pages</a>
-                               <ul>
-                                  <li><a href="cart.html">Cart</a></li>
-                                  <li><a href="checkout.html">Checkout</a></li>
-                                  <li><a href="account.html">Create Account</a></li>
-                                  <li><a href="my-account.html">My Account</a></li>
-                                  <li><a href="product-details.html">Product details</a></li>
-                                  <li><a href="shop.html">Shop Grid View</a></li>
-                                  <li><a href="shop-list.html">Shop List View</a></li>
-                                  <li><a href="wishlist.html">Wish List</a></li>
-                               </ul>
-                            </li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                           @foreach ($menus as $menu)
+                              <li>
+                                 <a href="{{ route('product-filter.category', ['category'=> $menu['slug']])}}">{{ $menu['title'] }}</a>
+                                 <ul>
+                                    @foreach ($menu['sub_category'] as $subCategory)
+                                          <li>
+                                             <a href="{{ route('product-filter.category', ['category'=> $menu['slug'], 'sub-category' => $subCategory['slug']])}}">{{ $subCategory['title'] }}</a>
+                                             <ul>
+                                                @foreach ($subCategory['brands'] as $brand)
+                                                      <li><a href="{{ route('product-filter.category', ['category'=> $menu['slug'], 'sub-category' => $subCategory['slug'], 'brand' => $brand['slug']])}}">{{ $brand->title }}</a></li>
+                                                @endforeach
+                                             </ul>
+                                          </li>
+                                    @endforeach
+                                 </ul>
+                              </li>
+                           @endforeach                                               
+                            <li><a href="{{ route('brand.index') }}">All Brands</a></li>
+                            <li><a href="{{ route('about-us.index') }}">About Us</a></li>
+                            <li><a href="{{ route('contact-us.index') }}">Contact Us</a></li>
                          </ul>
                       </nav>
                    </div>

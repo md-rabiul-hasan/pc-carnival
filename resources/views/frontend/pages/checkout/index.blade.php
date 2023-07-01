@@ -181,6 +181,67 @@
                                                                <option value="Faridpur">Faridpur</option>
                                                                <option value="Chattogram">Chattogram</option>
                                                                <option value="Gazipur">Gazipur</option>
+                                                               <option value="Mymensingh">Mymensingh</option>
+                                                               <option value="Barishal">Barishal</option>
+                                                               <option value="Rajshahi">Rajshahi</option>
+                                                               <option value="Rangpur">Rangpur</option>
+                                                               <option value="Sylhet">Sylhet</option>
+                                                               <option value="Khulna">Khulna</option>
+                                                               <option value="Moulvibazar">Moulvibazar</option>
+                                                               <option value="Narsingdi">Narsingdi</option>
+                                                               <option value="Narayanganj">Narayanganj</option>
+                                                               <option value="Bagerhat">Bagerhat</option>
+                                                               <option value="Bandarban">Bandarban</option>
+                                                               <option value="Barguna">Barguna</option>
+                                                               <option value="Barisal">Barisal</option>
+                                                               <option value="Bhola">Bhola</option>
+                                                               <option value="Bogra">Bogra</option>
+                                                               <option value="Brahmanbaria">Brahmanbaria</option>
+                                                               <option value="Chandpur">Chandpur</option>
+                                                               <option value="Chapai Nawabganj">Chapai Nawabganj</option>
+                                                               <option value="Chuadanga">Chuadanga</option>
+                                                               <option value="Comilla">Comilla</option>
+                                                               <option value="Cox's Bazar">Cox's Bazar</option>
+                                                               <option value="Dinajpur">Dinajpur</option>
+                                                               <option value="Feni">Feni</option>
+                                                               <option value="Gaibandha">Gaibandha</option>
+                                                               <option value="Gopalganj">Gopalganj</option>
+                                                               <option value="Habiganj">Habiganj</option>
+                                                               <option value="Jamalpur">Jamalpur</option>
+                                                               <option value="Jessore">Jessore</option>
+                                                               <option value="Jhalokati">Jhalokati</option>
+                                                               <option value="Jhenaidah">Jhenaidah</option>
+                                                               <option value="Joypurhat">Joypurhat</option>
+                                                               <option value="Khagrachhari">Khagrachhari</option>
+                                                               <option value="Kishoreganj">Kishoreganj</option>
+                                                               <option value="Kurigram">Kurigram</option>
+                                                               <option value="Kushtia">Kushtia</option>
+                                                               <option value="Lakshmipur">Lakshmipur</option>
+                                                               <option value="Lalmonirhat">Lalmonirhat</option>
+                                                               <option value="Madaripur">Madaripur</option>
+                                                               <option value="Magura">Magura</option>
+                                                               <option value="Manikganj">Manikganj</option>
+                                                               <option value="Meherpur">Meherpur</option>
+                                                               <option value="Munshiganj">Munshiganj</option>
+                                                               <option value="Naogaon">Naogaon</option>
+                                                               <option value="Narail">Narail</option>
+                                                               <option value="Natore">Natore</option>
+                                                               <option value="Netrokona">Netrokona</option>
+                                                               <option value="Nilphamari">Nilphamari</option>
+                                                               <option value="Noakhali">Noakhali</option>
+                                                               <option value="Pabna">Pabna</option>
+                                                               <option value="Panchagarh">Panchagarh</option>
+                                                               <option value="Patuakhali">Patuakhali</option>
+                                                               <option value="Pirojpur">Pirojpur</option>
+                                                               <option value="Rajbari">Rajbari</option>
+                                                               <option value="Rangamati">Rangamati</option>
+                                                               <option value="Satkhira">Satkhira</option>
+                                                               <option value="Shariatpur">Shariatpur</option>
+                                                               <option value="Sherpur">Sherpur</option>
+                                                               <option value="Sirajganj">Sirajganj</option>
+                                                               <option value="Sunamganj">Sunamganj</option>
+                                                               <option value="Tangail">Tangail</option>
+                                                               <option value="Thakurgaon">Thakurgaon</option>
                                                             </select>
                                                          </div>
                                                       </div>
@@ -216,9 +277,6 @@
                                                             <label class="radio-inline">
                                                             <input type="radio" name="payment_method" value="cash_on_delivery" checked="checked">
                                                             Cash on Delivery                                </label><br>
-                                                            {{-- <label class="radio-inline">
-                                                            <input type="radio" name="payment_method" value="ONLINE_PAYMENT">
-                                                            Online Payment                                </label><br> --}}
                                                          </div>
                                                       </div>
                                                    </div>
@@ -233,20 +291,21 @@
                                                             aria-controls="collapseSix">Delivery Method</a>
                                                       </h4>
                                                    </div>
-                                                   <div id="collapseSix" class="collapse show" aria-labelledby="headingSix"
-                                                      data-bs-parent="#accordion">
+                                                   <div id="collapseSix" class="collapse show" aria-labelledby="headingSix" data-bs-parent="#accordion">
                                                       <div class="card-body fix">
-                                                         <div class="page-section ws-box">
-                                                            <p>Select a Delivery Method</p>
-                                                            <label class="radio-inline">
-                                                            <input type="radio" name="shipping_method" value="HOME_DELIVERY" checked="checked">
-                                                            Home Delivery - 60৳                                </label><br>
-                                                            <label class="radio-inline">
-                                                            <input type="radio" name="shipping_method" value="STORE_PICKUP">
-                                                            Store Pickup - 0৳                                </label><br>
-                                                         </div>
+                                                        <div class="page-section ws-box">
+                                                          <p>Select a Delivery Method</p>
+                                                          <label class="radio-inline">
+                                                            <input type="radio" name="shipping_method" value="HOME_DELIVERY"  onclick="updateTotal(this)">
+                                                            Home Delivery - 60৳
+                                                          </label><br>
+                                                          <label class="radio-inline">
+                                                            <input type="radio" name="shipping_method" value="SHOP_DELIVERY"  checked="checked" onclick="updateTotal(this)">
+                                                            Store Pickup - 0৳
+                                                          </label><br>
+                                                        </div>
                                                       </div>
-                                                   </div>
+                                                    </div>
                                                 </div>
                                              </div>
                                              <div class="col-md-12 mt-3">
@@ -285,26 +344,27 @@
                                                                </tbody>
                                                                <tfoot>
                                                                   <tr>
-                                                                     <td class="text-right" colspan="2">
-                                                                        <strong>Sub-Total:</strong>
-                                                                     </td>
-                                                                     <td class="text-right">{{ $total }}৳</td>
+                                                                    <td class="text-right" colspan="2">
+                                                                      <strong>Sub-Total:</strong>
+                                                                    </td>
+                                                                    <td class="text-right">{{ $total }}৳</td>
                                                                   </tr>
                                                                   <tr>
-                                                                     <td class="text-right" colspan="2">
-                                                                        <strong>Flat Shipping Rate:</strong>
-                                                                     </td>
-                                                                     <td class="text-right">5.00৳</td>
+                                                                    <td class="text-right" colspan="2">
+                                                                      <strong>Delivery Charge:</strong>
+                                                                    </td>
+                                                                    <td class="text-right" id="shipping_rate">0৳</td>
                                                                   </tr>
                                                                   <tr>
-                                                                     <td class="text-right" colspan="2">
-                                                                        <strong>Total:</strong>
-                                                                     </td>
-                                                                     <td class="text-right">{{ $total }}৳</td>
+                                                                    <td class="text-right" colspan="2">
+                                                                      <strong>Total:</strong>
+                                                                    </td>
+                                                                    <td class="text-right" id="total_amount">{{ $total }}৳</td>
                                                                   </tr>
-                                                               </tfoot>
+                                                                </tfoot>
                                                             </table>
-                                                            <input type="hidden" name="delivery_charge" value="50">
+                                                            <input type="hidden" name="delivery_charge" id="delivery_charge" value="0">
+                                                            <input type="hidden" name="total_sub_total" id="total_sub_total" value="{{ $total }}">
                                                          </div>
                                                          <div class="buttons pull-right">
                                                             <input type="submit" class="btn btn-primary"
@@ -350,4 +410,25 @@
       });
    });
 </script>
+
+<script>
+   function updateTotal(selectedOption) {
+      var deliveryCharge = 0;
+      if (selectedOption.value === "HOME_DELIVERY") {
+         deliveryCharge = 60;
+      }
+      $("#delivery_charge").val(deliveryCharge);
+
+      var totalElement = document.getElementById("total_amount");
+      var shippingRateElement = document.getElementById("shipping_rate");
+      var sub_total = parseFloat($("#total_sub_total").val());
+      var delivery_charge = parseFloat($("#delivery_charge").val());
+      shippingRateElement.innerText = deliveryCharge + "৳";
+
+      var newTotal = sub_total + deliveryCharge;
+
+      totalElement.innerText = newTotal.toFixed(2) + "৳";
+   }
+ </script>
+
 @endpush

@@ -23,7 +23,8 @@
 						<!-- Start Contact-Message -->
 						<div class="contact-message">
 							<fieldset>
-								<form method="post" action="https://htmldemo.net/malias/malias/mail.php">
+								<form method="post" action="{{ route('contact-us.store') }}">
+									@csrf
 									<legend>Contact Form</legend>
 									<div class="row">
 										<div class="col-md-6">
@@ -31,7 +32,7 @@
 												<div class="row mb-2">
 													<label class="col-md-2 control-label"><sup>*</sup>Your Name</label>
 													<div class="col-md-10">
-														<input type="text" class="form-control" name="name"/>
+														<input type="text" class="form-control" name="name" required/>
 													</div>
 												</div>
 											</div>
@@ -39,7 +40,7 @@
 												<div class="row mb-2">
 													<label class="col-md-2 control-label"><sup>*</sup>E-Mail Address</label>
 													<div class="col-md-10">
-														<input class="form-control" type="email" name="email"/>
+														<input class="form-control" type="email" name="email" required/>
 													</div>
 												</div>
 											</div>
@@ -49,7 +50,7 @@
 												<div class="row mb-2">
 													<label class="col-md-2 control-label"><sup>*</sup>Enquiry</label>
 													<div class="col-md-10">
-														<textarea rows="4"  name="message" class="contact-us-message" ></textarea>
+														<textarea rows="4"  name="message" class="contact-us-message" required ></textarea>
 													</div>
 												</div>
 											</div>

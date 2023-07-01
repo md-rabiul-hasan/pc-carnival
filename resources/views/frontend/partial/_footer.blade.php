@@ -3,69 +3,53 @@
     <div class="footer">
        <div class="container">
           <div class="row">
-             <div class="col-12 col-md-6 col-lg-3">
-                <div class="footer-title">
-                   <h5>My Account</h5>
-                </div>
-                <nav>
-                   <ul class="footer-content">
-                      <li><a href="my-account.html">My Account</a></li>
-                      <li><a href="#">Order History</a></li>
-                      <li><a href="wishlist-2.html">Wish List</a></li>
-                      <li><a href="#">Search Terms</a></li>
-                      <li><a href="#">Returns</a></li>
-                   </ul>
-                </nav>
-             </div>
-             <div class="col-12 col-md-6 col-lg-3">
+            <div class="col-12 col-md-6 col-lg-4">
+               <div class="footer-title">
+                  <h5>Payment & Shipping</h5>
+               </div>
+               <nav>
+                  <ul class="footer-content box-information">
+                     <li>
+                        <i class="fa fa-home"></i><span>Towerthemes, 1234 Stret Lorem, LPA States,
+                        Libero</span>
+                     </li>
+                     <li>
+                        <i class="fa fa-envelope-o"></i>
+                        <p><a  href="mailto:admin@bootexperts.com"><span class="footer-email">admin@bootexperts.com</span></a></p>
+                     </li>
+                     <li>
+                        <i class="fa fa-phone"></i>
+                        <span>01234-56789</span> <br> <span> 01234-56789</span>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
+             <div class="col-12 col-md-6 col-lg-4">
                 <div class="footer-title">
                    <h5>Customer Service</h5>
                 </div>
                 <nav>
                    <ul class="footer-content">
-                      <li><a href="contact.html">Contact Us</a></li>
-                      <li><a href="about.html">About Us</a></li>
-                      <li><a href="#">Delivery Information</a></li>
-                      <li><a href="#">Privacy Policy</a></li>
-                      <li><a href="#">Terms & Conditions</a></li>
+                      <li><a href="{{ route('contact-us.index') }}">Contact Us</a></li>
+                      <li><a href="{{ route('about-us.index') }}">About Us</a></li>
+                      <li><a href="{{ route('privacy-policy.show') }}">Privacy Policy</a></li>
+                      <li><a href="{{ route('terms-and-condition.show') }}">Terms & Conditions</a></li>
                    </ul>
                 </nav>
              </div>
-             <div class="col-12 col-md-6 col-lg-3">
+             <div class="col-12 col-md-6 col-lg-4">
                 <div class="footer-title">
-                   <h5>Payment & Shipping</h5>
+                   <h5>Others</h5>
                 </div>
                 <nav>
                    <ul class="footer-content">
-                      <li><a href="#">Brands</a></li>
-                      <li><a href="#">Gift Vouchers</a></li>
-                      <li><a href="#">Affiliates</a></li>
-                      <li><a href="shop-list.html">Specials</a></li>
-                      <li><a href="#">Search Terms</a></li>
+                      <li><a href="{{ route('brand.index') }}">Brands</a></li>
+                      <li><a href="my-account.html">My Account</a></li>
+                      <li><a href="{{ route('manage.order') }}">Order History</a></li>
+                      <li><a href="{{ route('delivery-option.show') }}">Delivery Information</a></li>
                    </ul>
                 </nav>
-             </div>
-             <div class="col-12 col-md-6 col-lg-3">
-                <div class="footer-title">
-                   <h5>Payment & Shipping</h5>
-                </div>
-                <nav>
-                   <ul class="footer-content box-information">
-                      <li>
-                         <i class="fa fa-home"></i><span>Towerthemes, 1234 Stret Lorem, LPA States,
-                         Libero</span>
-                      </li>
-                      <li>
-                         <i class="fa fa-envelope-o"></i>
-                         <p><a href="contact.html">admin@bootexperts.com</a></p>
-                      </li>
-                      <li>
-                         <i class="fa fa-phone"></i>
-                         <span>01234-56789</span> <br> <span> 01234-56789</span>
-                      </li>
-                   </ul>
-                </nav>
-             </div>
+             </div>             
           </div>
        </div>
     </div>
@@ -76,12 +60,10 @@
           <div class="row">
              <div class="col-lg-12">
                 <div class="copyright">
-                   <p>Copyright &copy; <a href="http://bootexperts.com/" target="_blank"> BootExpert</a> All
+                   <p>Copyright &copy; <a href="https://www.linkedin.com/in/md-rabiul-hasan-0904931b3/" target="_blank"> Rabiul Hasan</a> All
                       rights reserved.
                    </p>
-                   <div class="payment">
-                      <a href="#"><img src="{{ asset('frontend/assets/img/payment.png')}}" alt="Payment"></a>
-                   </div>
+                 
                 </div>
              </div>
           </div>
@@ -162,9 +144,10 @@ aria-hidden="true">
          </script>
 
          <script>
-            function addToCart(id) {
+            function addToCart(id, quantity = 1) {
                axios.post('{{ route("cart.add_to_cart") }}', {
-                        product_id: id
+                        product_id: id,
+                        product_quantity: quantity
                   })
                   .then(function(response) {
                         toastr.success("This product has been added to your cart", 'Success');
@@ -180,13 +163,21 @@ aria-hidden="true">
                   });
             }
             function getCartCount() {
+               
                axios.get('{{ route("cart.count") }}')
                   .then(function(response) {
-                     $('#cart_badge').text(response.data.count);
+                     if(response.data.count === 0){
+                        $('#cart_badge').hide();
+                     }else{
+                        $('#cart_badge').show();
+                        $('#cart_badge').text(response.data.count);
+                     }
+                     
                   })
                   .catch(function(error) {
                   });
             }
+            getCartCount();
          </script>
 
          <script>

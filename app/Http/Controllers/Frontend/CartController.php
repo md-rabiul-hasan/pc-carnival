@@ -27,6 +27,7 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $product = Product::find($request->input('product_id'));
+        $product_quantity = $request->input('product_quantity');
         
         if (!$product) {
             // Product not found, return an error message
@@ -37,7 +38,7 @@ class CartController extends Controller
         
         if (isset($cart[$product->id])) {
             // Item already exists, increment the quantity
-            $cart[$product->id]['quantity']++;
+            $cart[$product->id]['quantity']+= $product_quantity;
         } else {
             // Item doesn't exist, add it to the cart
             $item = [
@@ -46,7 +47,7 @@ class CartController extends Controller
                 'title'    => $product->title,
                 'slug'     => $product->slug,
                 'price'    => $product->current_price,
-                'quantity' => 1
+                'quantity' => $product_quantity
             ];
             
             $cart[$product->id] = $item;

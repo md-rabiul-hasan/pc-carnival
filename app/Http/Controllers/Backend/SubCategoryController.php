@@ -56,7 +56,7 @@ class SubCategoryController extends Controller
         $sub_category->category_id = $request->input('category_id');
         $sub_category->image       = $this->imageUpload($request->file('image'), "storage/sub-category/");
         $sub_category->save();
-        return redirect()->route('admin.sub-category.index');
+        return redirect()->route('admin.sub-category.index')->with('message','Sub-Category added Successfully');;
     }
 
     /**
@@ -99,7 +99,7 @@ class SubCategoryController extends Controller
         $sub_category->category_id = $request->input('category_id');
         $sub_category->image       = $this->imageRemoveAndUpload($sub_category->image, $request->file('image'), "storage/sub-category/");;
         $sub_category->save();
-        return redirect()->route('admin.sub-category.index');
+        return redirect()->route('admin.sub-category.index')->with('message','Sub-Category updated Successfully');
     }
 
     /**
