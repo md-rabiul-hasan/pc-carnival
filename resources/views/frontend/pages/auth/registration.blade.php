@@ -20,22 +20,23 @@
                                <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" class="form-control"
-                                   name="name" required/>
+                                   name="name" value="{{ old('name') }}" required/>
                              </div>
                              <div class="form-group">
                                 <label>Phone</label>
                                 <input type="text" class="form-control"
-                                   name="phone" required/>
+                                   name="phone" value="{{ old('phone') }}" required/>
                              </div>
                                <div class="form-group">
                                   <label>E-mail</label>
                                   <input type="email" class="form-control"
-                                     name="email" />
+                                     name="email" value="{{ old('email') }}" required />
                                </div>
                                <div class="form-group">
                                   <label>Password</label>
-                                  <input type="password" name="passowrd" class="form-control" />
+                                  <input type="password" name="password" class="form-control" required />
                                </div>
+                               <input type="hidden" name="auth" value="auth">
                                <input type="submit" class="btn btn-primary btn-block"
                                   value="Registration" />
                                <p class="or">OR</p>

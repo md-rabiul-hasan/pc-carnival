@@ -100,7 +100,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'processor', 'type' => $pc_build_components['processor']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-2"
@@ -137,7 +139,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'motherboard', 'type' => $pc_build_components['motherboard']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-3"
@@ -174,7 +178,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'graphics_card', 'type' => $pc_build_components['graphics_card']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-8"
@@ -210,7 +216,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'cpu_cooler', 'type' => $pc_build_components['cpu_cooler']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-9"
@@ -247,7 +255,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'ram_1', 'type' => $pc_build_components['ram_1']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-10"
@@ -284,7 +294,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'ram_2', 'type' => $pc_build_components['ram_2']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-11"
@@ -321,7 +333,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'storage', 'type' => $pc_build_components['storage']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-13"
@@ -357,7 +371,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'power_supply', 'type' => $pc_build_components['power_supply']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-14"
@@ -393,7 +409,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'casing', 'type' => $pc_build_components['casing']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                            </div>
@@ -434,7 +452,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'monitor', 'type' => $pc_build_components['monitor']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-6"
@@ -470,7 +490,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'case_fan', 'type' => $pc_build_components['case_fan']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-15"
@@ -506,7 +528,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'ups', 'type' => $pc_build_components['ups']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-16"
@@ -542,7 +566,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'anti_virus', 'type' => $pc_build_components['anti_virus']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                            </div>
@@ -583,7 +609,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'mouse', 'type' => $pc_build_components['mouse']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-5"
@@ -619,7 +647,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'keyboard', 'type' => $pc_build_components['keyboard']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                               <div id="pc-builder-component-container-17"
@@ -655,7 +685,9 @@
                                     class="component-choose hidden-xs hidden-sm">
                                     <a href="{{ route('pc-build.filter', ['component' => 'headphone', 'type' => $pc_build_components['headphone']->subCategory->slug]) }}"
                                        class="btn btn-md btn-primary hidden-xs hidden-sm"><span
-                                       class="hidden-xs hidden-sm hidden-md">Choose</span></a>
+                                       class="hidden-xs hidden-sm hidden-md">Choose</span>
+                                       <span
+                                       class="search"><i class="fa fa-search"></i></span></a>
                                  </div>
                               </div>
                            </div>

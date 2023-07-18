@@ -2,7 +2,7 @@
     <div class="container">
        <div class="row">
          @foreach($home_page_adds as $home_page_add)
-          <div class="col-lg-4 ">
+          <div class="col-lg-4 col-md-4">
              <div class="single-product-banner">
                 <a target="_blank" href="{{ $home_page_add->link }}"><img src="{{ asset($home_page_add->banner)}}" alt="Product Banner"></a>
                 <div class="banner-text banner-1">

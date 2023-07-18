@@ -46,7 +46,7 @@
                                                 href="{{ route('product-details.index', $item['slug']) }}">{{ $item['title'] }}</a>
                                             <br>
                                         </td>
-                                        <td class="text-left">
+                                        <td class="text-left rs-none">
                                             <div class="input-group btn-block" style="max-width: 200px;">
                                                 <input type="text"
                                                     name="quantity"

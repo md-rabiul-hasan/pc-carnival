@@ -51,6 +51,7 @@
       <!-- custom CSS
          ============================================ -->
       <link rel="stylesheet" href="{{ asset('frontend/assets/custom.css')}}">
+      <link rel="stylesheet" href="{{ asset('frontend/assets/responsive.css')}}">
       <style>
          #toast-container > .toast-success {
             background-image: none;
@@ -103,6 +104,9 @@
 .drop:hover .drop-menu {
   display: block;
 }
+span.search {
+        display: none;
+    }
 
       </style>
       @stack('css')

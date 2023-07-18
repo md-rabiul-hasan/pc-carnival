@@ -72,11 +72,11 @@
                                                          <p>I am a returning customer</p>
                                                          <div class="form-group">
                                                             <label>E-mail</label>
-                                                            <input type="email" class="form-control" name="email" />
+                                                            <input type="email" class="form-control" name="email" value="{{ old('email') }}"  required/>
                                                          </div>
                                                          <div class="form-group">
                                                             <label>Password</label>
-                                                            <input type="password" class="form-control" name="password" />
+                                                            <input type="password" class="form-control" name="password" required />
                                                             <a href="#">Forgotten Password</a>
                                                          </div>
                                                          <input type="submit" class="btn btn-primary"
@@ -94,17 +94,17 @@
                                                          <p>Create new account</p>
                                                          <div class="form-group">
                                                             <label>Name</label>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control" value="{{ old('name') }}" 
                                                                name="name" required/>
                                                          </div>
                                                          <div class="form-group">
                                                             <label>Phone</label>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control" value="{{ old('phone') }}" 
                                                                name="phone" required/>
                                                          </div>
                                                          <div class="form-group">
                                                             <label>E-mail</label>
-                                                            <input type="email" class="form-control"
+                                                            <input type="email" class="form-control" value="{{ old('email') }}" 
                                                                name="email" />
                                                          </div>
                                                          <div class="form-group">
@@ -129,7 +129,7 @@
                                  <!-- Start 3 shipping-Address -->
                                  <div class="col-md-12">
                                     <div class="row">
-                                       <div class="col-md-6  mt-3">
+                                       <div class="col-lg-6  col-12 mt-3">
                                           <div class="card">
                                              <div class="card-header" id="headingThree">
                                                 <h4 class="card-title">
@@ -145,20 +145,20 @@
                                                       <div class="multiple-form-group">
                                                          <div class="form-group">
                                                             <label class="control-label" for="input-firstname">First Name</label>
-                                                            <input class="form-control multiple-input-box" name="first_name" type="text" id="input-firstname" value="" placeholder="First Name*">
+                                                            <input class="form-control multiple-input-box" name="first_name" type="text" id="input-firstname" required value="{{ old('first_name') }}" placeholder="First Name*">
                                                          </div>
                                                          <div class="form-group">
                                                             <label class="control-label" for="input-lastname">Last Name</label>
-                                                            <input type="text" id="input-lastname" name="last_name" value="" class="form-control multiple-input-box" placeholder="Last Name*">
+                                                            <input type="text" id="input-lastname" name="last_name"  class="form-control multiple-input-box" required value="{{ old('last_name')}}" placeholder="Last Name*">
                                                          </div>
                                                       </div>                                                      
                                                       <div class="form-group">
                                                          <label class="control-label" for="input-telephone">Mobile</label>
-                                                         <input type="tel" id="input-telephone" name="phone" value="" class="form-control" placeholder="Telephone*">
+                                                         <input type="tel" id="input-telephone" name="phone" value="{{ old('phone')}}" class="form-control"  required placeholder="Telephone*">
                                                       </div>
                                                       <div class="form-group" for="input-email">
                                                          <label class="control-label">Email</label>
-                                                         <input type="email" id="input-email" name="email" value="" class="form-control" placeholder="E-Mail*">
+                                                         <input type="email" id="input-email" name="email" value="{{ old('email')}}" class="form-control" placeholder="E-Mail*">
                                                       </div>
                                                       <div class="multiple-form-group">
                                                          <div class="form-group" for="input-zone">
@@ -246,19 +246,19 @@
                                                          </div>
                                                       </div>
                                                       <div class="form-group">
-                                                         <label class="control-label" for="input-address">Address</label>
-                                                         <input type="text" id="input-address" name="address" value="" class="form-control" placeholder="Address*">
+                                                         <label class="control-label" for="input-address">Shipping Address</label>
+                                                         <input type="text" id="input-address" name="address" value="{{ old('address')}}" class="form-control" required placeholder="Address*">
                                                       </div>
                                                       <div class="form-group">
                                                          <label class="control-label">Comment</label>
-                                                         <textarea class="form-control" name="comment" value="" placeholder="Comment" rows="6"></textarea>
+                                                         <textarea class="form-control" name="comment" value="{{ old('comment')}}" placeholder="Comment" rows="6"></textarea>
                                                       </div>
                                                    </div>
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
-                                       <div class="col-md-6 mt-3">
+                                       <div class="col-lg-6 col-md-12 col-12 mt-3">
                                           <div class="row">
                                              <div class="col-md-6">
                                                 <div class="card">
@@ -282,7 +282,7 @@
                                                    </div>
                                                 </div>
                                              </div>
-                                             <div class="col-md-6">
+                                             <div class="col-lg-6 col-md-6 col-12">
                                                 <div class="card">
                                                    <div class="card-header" id="headingSix">
                                                       <h4 class="card-title">

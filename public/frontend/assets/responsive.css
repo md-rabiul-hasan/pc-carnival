@@ -1,0 +1,100 @@
+/* Responsive media query for smaller screens */
+@media (max-width: 768px) {
+    .cat-item {
+        flex: 0 0 19.33%;
+    }
+    .single-product-banner {
+        margin: -5px 0 0;
+    }
+    .banner-text.banner-1 h2 {
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .product-area {
+        margin-top: 9px;
+    }
+    .component-image {
+        margin-left: 0px;
+    }
+    .pc-build-price {
+        right: 1%;
+    }
+    
+}
+
+
+/* Responsive media query for smaller screens */
+@media (max-width: 420px) {
+    .container {
+        width: 387px;
+    }
+    .cat-item {
+        flex: 0 0 32.5%;
+    }
+    .cat-item p {
+        font-size: 10px;
+    }
+    .cat-item .cat-icon {
+        padding: 2px;
+    }
+    .single-product-banner {
+        margin: 8px 0 0;
+    }
+    .footer-title {
+        margin-top: 6px;
+    }
+    .product-details .product-images .thumbnail .main-img {
+        max-width: 100%;
+    }
+    h1.product-name {
+        font-size: 18px;
+    }
+    .product-details .cart-option .btn {
+        min-width: 117px;
+        font-size: 13px;
+    }
+    .component-product-empty.component_selected {
+        font-size: 10px;
+    }
+    .component-product-empty {
+        width: 180px !important;
+    }
+    .pc-build-price .price {
+        font-size: 10px;
+    }
+    .component_remove {
+        font-size: 10px;
+    }
+    .component-image {
+        margin-left: 1px;
+        border: none;
+    }
+    span.hidden-xs.hidden-sm.hidden-md {
+        display: none;
+    }
+  
+    .pc-builder-component-container .btn {
+        padding: 0 9px;
+    }
+    .add-pc-build {
+        position: absolute;
+        top: 1%;
+        right: 5%;
+    }
+    span.search {
+        display: block!important;
+    }
+    td.text-center.rs-none {
+        display: none;
+    }
+    .cart-table tr td {
+        width: 25%;
+    }
+    td.text-center.rs-none {
+        display: none;
+    }
+    td.text-left.rs-none {
+        display: none;
+    }
+}

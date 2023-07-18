@@ -27,6 +27,7 @@
                                         <input type="password" name="password" class="form-control" />
                                         <a href="#">Forgotten Password</a>
                                      </div>
+                                     <input type="hidden" name="auth" value="auth">
                                      <input type="submit" class="btn btn-primary btn-block"
                                         value="Login" />
       

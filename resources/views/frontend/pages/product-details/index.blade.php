@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="basic row">
-				<div class="col-md-5 left">
+				<div class="col-lg-5 col-md-12 col-12 left">
 					<div class="images product-images">
 						<div class="product-img-holder">
 
@@ -54,7 +54,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-md-7 right" id="product">
+				<div class="col-lg-7 col-md-12 col-12 right" id="product">
 					<div class="pd-summary">
 						<div class="product-short-info">
 							<h1 itemprop="name" class="product-name">{{ $product->title }}</h1>

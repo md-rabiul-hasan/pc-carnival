@@ -3,7 +3,7 @@
     <div class="footer">
        <div class="container">
           <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-4 col-lg-4">
                <div class="footer-title">
                   <h5>Payment & Shipping</h5>
                </div>
@@ -24,7 +24,7 @@
                   </ul>
                </nav>
             </div>
-             <div class="col-12 col-md-6 col-lg-4">
+             <div class="col-12 col-md-4 col-lg-4">
                 <div class="footer-title">
                    <h5>Customer Service</h5>
                 </div>
@@ -37,7 +37,7 @@
                    </ul>
                 </nav>
              </div>
-             <div class="col-12 col-md-6 col-lg-4">
+             <div class="col-12 col-md-4 col-lg-4">
                 <div class="footer-title">
                    <h5>Others</h5>
                 </div>
@@ -96,7 +96,7 @@ aria-hidden="true">
 
          <!-- Toaster
             ============================================ -->
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
          <!-- popper JS
             ============================================ -->
@@ -192,7 +192,44 @@ aria-hidden="true">
                });
             });
          </script>
-
+         <script>
+            @if(Session::has('message'))
+            toastr.options =
+            {
+               "closeButton" : true,
+               "progressBar" : true,
+               "positionClass": "toast-top-right",
+            }
+                  toastr.success("{{ session('message') }}");
+            @endif
+         
+            @if(Session::has('error'))
+            toastr.options =
+            {
+               "closeButton" : true,
+               "progressBar" : true
+            }
+                  toastr.error("{{ session('error') }}");
+            @endif
+         
+            @if(Session::has('info'))
+            toastr.options =
+            {
+               "closeButton" : true,
+               "progressBar" : true
+            }
+                  toastr.info("{{ session('info') }}");
+            @endif
+         
+            @if(Session::has('warning'))
+            toastr.options =
+            {
+               "closeButton" : true,
+               "progressBar" : true
+            }
+                  toastr.warning("{{ session('warning') }}");
+            @endif
+         </script>
 
       </body>
       <!-- Mirrored from htmldemo.net/malias/malias/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jan 2023 15:38:42 GMT -->

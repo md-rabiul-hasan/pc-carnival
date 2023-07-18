@@ -9,10 +9,25 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class ConfirmOrderController extends Controller
 {
     public function confirmOrder(Request $request){
+          // Validate the input data
+          $validator = Validator::make($request->all(), [
+            'first_name'     => 'required',
+            'first_name'     => 'required',
+            'phone'    => 'required|regex:/^(\+?88)?01[3-9]\d{8}$/|unique:users',
+            'address'    => 'required',
+        ]);
+
+        // If validation fails, redirect back with error message
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first())->withInput();
+        }
+
+
         $cart = session()->get('cart', []);
         $total_order = 0;
         foreach($cart as $cart_item){
@@ -52,7 +67,7 @@ class ConfirmOrderController extends Controller
 
         session()->forget('cart');
 
-        return redirect()->route('order.voucher', $order_number);
+        return redirect()->route('order.voucher', $order_number)->with('message', 'Order confirmation successfully');
 
         
     }

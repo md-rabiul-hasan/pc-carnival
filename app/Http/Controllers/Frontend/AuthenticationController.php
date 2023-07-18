@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
 {
@@ -22,6 +23,19 @@ class AuthenticationController extends Controller
     }
     
     public function registration(Request $request){  
+        // Validate the input data
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'phone'    => 'required|regex:/^(\+?88)?01[3-9]\d{8}$/|unique:users',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+
+        // If validation fails, redirect back with error message
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first())->withInput();
+        }
+
         // Create a new user
         $user           = new User();
         $user->name     = $request->input('name');
@@ -33,7 +47,12 @@ class AuthenticationController extends Controller
         // Log in the newly registered user
         Auth::login($user);
 
-        return redirect()->back();
+        if($request->has('auth')){
+            return redirect()->route('index')->with('message', 'Registration Successful');
+        }else{
+            return redirect()->back()->with('message', 'Registration Successful');
+        }
+        
     }
 
     public function signin(Request $request){
@@ -41,11 +60,14 @@ class AuthenticationController extends Controller
             $credentials = $request->only('email', 'password');
         
             if (Auth::attempt($credentials)) {
-                return redirect()->back();
+                if($request->has('auth')){
+                    return redirect()->route('index')->with('message','Login Successfully');
+                }else{
+                    return redirect()->back()->with('message','Login Successfully');
+                }
+                
             } else {
-                throw ValidationException::withMessages([
-                    'email' => 'Invalid email or password.',
-                ]);
+                return redirect()->back()->with('error','Invalid email or password.');
             }
         } catch (ValidationException $e) {
             return $e->errors();
@@ -55,7 +77,7 @@ class AuthenticationController extends Controller
 
     public function logout(Request $request){
         Auth::logout();
-        return redirect()->route('index');
+        return redirect()->route('index')->with('message','Logout Successfully');
     }
 
 }
