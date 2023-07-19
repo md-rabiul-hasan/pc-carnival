@@ -52,63 +52,6 @@
          ============================================ -->
       <link rel="stylesheet" href="{{ asset('frontend/assets/custom.css')}}">
       <link rel="stylesheet" href="{{ asset('frontend/assets/responsive.css')}}">
-      <style>
-         #toast-container > .toast-success {
-            background-image: none;
-            background-color: #00BA5A;
-            color: white;
-         }
-         #toast-container > .toast-error {
-            background-image: none;
-            background-color: red;
-            color: white;
-         }
-         /* Dropdown styles */
-.drop .drop-toggle {
-  position: relative!important;
-}
-
-.drop .drop-menu {
-  position: absolute;
-  display: none;
-  min-width: 160px;
-  padding: 5px 0;
-  margin: 2px 0 0;
-  font-size: 14px;
-  background-color: white!important;
-  text-align: left;
-  border: 1px solid #ccc!important;
-  border-radius: 4px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-}
-
-.drop .drop-menu li {
-  position: relative;
-}
-
-.drop .drop-menu li a {
-  display: block;
-  padding: 5px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333!important;
-  white-space: nowrap;
-}
-
-.drop .drop-menu li a{
-  background-color: #f5f5f5!important;
-  color: #333!important;
-}
-
-.drop:hover .drop-menu {
-  display: block;
-}
-span.search {
-        display: none;
-    }
-
-      </style>
       @stack('css')
    </head>
    <body>
@@ -151,35 +94,40 @@ span.search {
                        <!-- End Top-Link -->
                    <!-- Start Top-Link -->
                    <div class="top-link">
-                      <ul class="link">
-                        <li>
-                           <a href="{{ route('cart.index') }}" style="position: relative">
-                               <i class="fa fa-shopping-cart"></i> 
-                               Cart
-                               <span class="badge" id="cart_badge">{{ $cartItemCount ?? 0 }}</span>
-                           </a>
-                       </li>
-                         @if(!Auth::check())
-                           <li><a href="{{ route('auth.signin') }}"><i class="fa fa-user"></i>Login</a></li>
-                         @else 
-                         <li class="drop">
-                           <a href="javascript:void(0);" class="drop-toggle" data-toggle="dropdown">
-                             <i class="fa fa-user"></i>{{ \Illuminate\Support\Str::limit(Auth::user()->name, 8, '..') }}
-                             <span class="caret"></span>
-                           </a>
-                           <ul class="drop-menu">
-                             <li><a href="{{ route('manage.order') }}">Manage Order</a></li>
-                             <li><a href="#"
-                              onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">Logout</a></li>
-                                            <form id="logout-form" action="{{ route('auth.registration.logout') }}" method="POST" class="d-none">
-                                             @csrf
-                                         </form>
-                           </ul>
-                         </li>
-                         @endif                         
-                         
-                      </ul>
+                     <div class="top-menu">
+								<!-- Start Currency -->
+								<ul class="currency">
+									<li class="top-icon">
+                              <a href="{{ route('cart.index') }}" style="position: relative">
+                                 <i class="fa fa-shopping-cart"></i> 
+                                 Cart
+                                 <span class="badge" id="cart_badge">{{ $cartItemCount ?? 0 }}</span>
+                             </a>
+									</li>
+								</ul>
+                        <ul class="currency">
+                           @if(!Auth::check())
+                              <li class="top-icon"><a href="{{ route('auth.signin') }}"><i class="fa fa-user"></i> Login</a></li>
+                           @else 
+
+									<li class="top-icon"><a href="javascript:void(0);" class="drop-toggle" data-toggle="dropdown">
+                              <i class="fa fa-user"></i> {{ \Illuminate\Support\Str::limit(Auth::user()->name, 8, '..') }}
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="drop-menu user-icon">
+                              <li><a href="{{ route('manage.order') }}">Manage Order</a></li>
+                              <li><a href="#"
+                               onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout</a></li>
+                                    <form id="logout-form" action="{{ route('auth.registration.logout') }}" method="POST" class="d-none">
+                                       @csrf
+                                 </form>
+                            </ul>
+									</li>
+                           @endif
+								</ul>
+								
+							</div>
                    </div>
                    <!-- End Top-Link -->
                  

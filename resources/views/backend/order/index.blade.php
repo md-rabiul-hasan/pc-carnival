@@ -10,6 +10,12 @@ Orders
     position: absolute;
     right: 1%;
   }
+  select#order_status {
+    width: 15%;
+  }
+  span.relative.z-0.inline-flex.shadow-sm.rounded-md {
+    display: none;
+}
   </style>
 @endpush
 
@@ -27,8 +33,18 @@ Orders
 @endsection
 
 @section('content')
+<div class="row">
+  <select class="form-control select2" name="order_status" id="order_status" required>
+    <option value="">Select Order Status</option>
+    <option value="0" @if(request()->query('order_status') == "0") {{ "selected" }} @endif>Order Pending</option>
+    <option value="1" @if(request()->query('order_status') == "1") {{ "selected" }} @endif>Order Shipped</option>
+    <option value="2" @if(request()->query('order_status') == "2") {{ "selected" }} @endif>Order Delivered</option>
+    <option value="3" @if(request()->query('order_status') == "3") {{ "selected" }} @endif>Order Cancelled</option>
+  </select>
 
-<input type="search" name="search" id="searchProduct" value="">
+  <input type="search" name="search" id="searchProduct" value="{{ request()->query('search') }}">
+</div>
+
 <br><br><br>
 
 <div class="row">
@@ -84,35 +100,43 @@ Orders
     </div>
     <div class="col-md-12">
       <div>
-<!-- Render the pagination links -->
-{{ $orders->links() }}
+        <!-- Render the pagination links -->
+        {{ $orders->appends(request()->except('page'))->links() }}
       </div>
-      
     </div>
+    
   </div>
 @endsection
 
 @push('js')
 <script>
   $(document).ready(function() {
-     $('#searchProduct').on('keypress', function(event) {
-        if (event.keyCode === 13) { // Enter key
-           event.preventDefault();
-           var searchTerm = $(this).val().trim();
-           if (searchTerm !== '') {
-              updateURLAndReload(searchTerm);
-           }
-        }
-     });
+    // Event listener for order_status select dropdown change
+    $('#order_status').on('change', function(event) {
+      event.preventDefault();
+      let selectedStatus = $(this).val().trim();
+      updateURLAndReload(selectedStatus, $('#searchProduct').val().trim());
+    });
 
-     function updateURLAndReload(searchTerm) {
-        let currentURL = window.location.href;
-        let updatedURL = new URL(currentURL);
-        updatedURL.searchParams.set('search', searchTerm);
-        let newURL = updatedURL.toString();
+    // Event listener for searchProduct input field
+    $('#searchProduct').on('keypress', function(event) {
+      if (event.keyCode === 13) { // Enter key
+        event.preventDefault();
+        var searchTerm = $(this).val().trim();
+        updateURLAndReload($('#order_status').val().trim(), searchTerm);
         
-        window.location.href = newURL;
-     }
+      }
+    });
+
+    function updateURLAndReload(orderStatus, searchTerm) {
+      let currentURL = window.location.href;
+      let updatedURL = new URL(currentURL);
+      updatedURL.searchParams.set('order_status', orderStatus);
+      updatedURL.searchParams.set('search', searchTerm);
+      let newURL = updatedURL.toString();
+
+      window.location.href = newURL;
+    }
   });
 </script>
 

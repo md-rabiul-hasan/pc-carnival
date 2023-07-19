@@ -11,18 +11,24 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function index(Request $request){
-        $searchTerm = $request->input('search');
-
+        $searchTerm  = $request->input('search');
+        $orderStatus = $request->input('order_status');
+        
         $orders = Order::with('customer')
-            ->where('order_number', 'LIKE', "%$searchTerm%")
-            ->orWhereHas('customer', function ($query) use ($searchTerm) {
-                $query->where('first_name', 'LIKE', "%$searchTerm%")
-                    ->orWhere('last_name', 'LIKE', "%$searchTerm%")
-                    ->orWhere('phone', 'LIKE', "%$searchTerm%");
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('order_number', 'LIKE', "%$searchTerm%")
+                    ->orWhereHas('customer', function ($query) use ($searchTerm) {
+                        $query->where('first_name', 'LIKE', "%$searchTerm%")
+                            ->orWhere('last_name', 'LIKE', "%$searchTerm%")
+                            ->orWhere('phone', 'LIKE', "%$searchTerm%");
+                    });
+            })
+            ->when($orderStatus !== null, function ($query) use ($orderStatus) {
+                $query->where('status', $orderStatus);
             })
             ->orderBy('id', 'desc')
-            ->paginate(10);
-
+            ->paginate(2);
+        
         $data = [
             "sl" => 1,
             "orders" => $orders

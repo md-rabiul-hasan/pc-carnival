@@ -321,12 +321,12 @@
                                                       data-bs-parent="#accordion">
                                                       <div class="card-body fix">
                                                          <div class="table-responsive">
-                                                            <table class="table table-bordered table-hover">
+                                                            <table class="table order-detail table-bordered table-hover">
                                                                <thead>
                                                                   <tr>
-                                                                     <td class="text-left">Product Name</td>
-                                                                     <td class="text-right">Unit Price x Quantity</td>
-                                                                     <td class="text-right">Total</td>
+                                                                     <td class="text-left td-name">Product Name</td>
+                                                                     <td class="text-right td-other">Price x Quantity</td>
+                                                                     <td class="text-right td-other">Total</td>
                                                                   </tr>
                                                                </thead>
                                                                <tbody>
@@ -334,15 +334,15 @@
                                                                   @foreach($cart_items as $item)
                                                                   @php $total += $item['price'] * $item['quantity']; @endphp
                                                                      <tr>
-                                                                        <td class="text-left">
+                                                                        <td class="text-left td-name">
                                                                            <a href="#">{{ $item['title'] }}</a>
                                                                         </td>
-                                                                        <td class="text-right">{{ $item['price'] }}৳ x {{ $item['quantity'] }}</td>
-                                                                        <td class="text-right">{{ $item['price'] * $item['quantity'] }}</td>
+                                                                        <td class="text-right td-other">{{ $item['price'] }}৳ x {{ $item['quantity'] }}</td>
+                                                                        <td class="text-right td-other">{{ $item['price'] * $item['quantity'] }}</td>
                                                                      </tr>
                                                                   @endforeach
                                                                </tbody>
-                                                               <tfoot>
+                                                               <tfoot class="order-foot">
                                                                   <tr>
                                                                     <td class="text-right" colspan="2">
                                                                       <strong>Sub-Total:</strong>

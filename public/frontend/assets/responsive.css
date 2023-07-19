@@ -85,16 +85,29 @@
     span.search {
         display: block!important;
     }
-    td.text-center.rs-none {
+    .rs-none {
         display: none;
     }
     .cart-table tr td {
+        width: 50%;
+    }
+    table.cart-total td {
+        width: 50%;
+    }
+    .td-name{
+        width: 50%;
+    }
+    .td-other {
         width: 25%;
     }
-    td.text-center.rs-none {
-        display: none;
+    tfoot.order-foot tr td {
+        width: 50%;
     }
-    td.text-left.rs-none {
-        display: none;
+    .order-detail tr td {
+        font-size: 8px!important;
     }
+    .multiple-input-box {
+        width: 154px!important;
+    }
+    
 }

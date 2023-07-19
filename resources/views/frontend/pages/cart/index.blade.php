@@ -20,7 +20,7 @@
                     <form action="https://www.startech.com.bd/checkout/cart/edit" method="post"
                         enctype="multipart/form-data">
                         <div class="table-responsive">
-                            <table class="table table-bordered cart-table bg-white">
+                            <table class="table table-bordered table-responsive cart-table bg-white">
                                 <thead>
                                     <tr>
                                         <td class="text-center rs-none">Image</td>
@@ -44,7 +44,7 @@
                                         </td>
                                         <td class="text-left"><a
                                                 href="{{ route('product-details.index', $item['slug']) }}">{{ $item['title'] }}</a>
-                                            <br>
+                                            
                                         </td>
                                         <td class="text-left rs-none">
                                             <div class="input-group btn-block" style="max-width: 200px;">

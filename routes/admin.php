@@ -24,6 +24,7 @@ Route::group([
 ], function () {
     // Route for admin dashboard
     Route::get('/', [AdminHomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/order-chart', [AdminHomeController::class, 'orderChart'])->name('order.chart');
 
     // Route for admin logout
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');

@@ -1203,7 +1203,7 @@ td.product-info-label {
     position: absolute;
     background: white;
     right: 3%;
-    top: 20%;
+    top: 9%;
 }
 
 .add-pc-build {
@@ -1316,3 +1316,71 @@ a.btn.btn-block.create-account {
   span.footer-email {
     color: #ddd;
 }  
+
+.top-menu > ul > li > ul > li a {
+    color: #6C2F3A!important;
+}
+
+.top-menu > ul > li > ul > li a:hover {
+    color: #fff!important;
+    background: #6C2F3A;
+}
+
+
+#toast-container > .toast-success {
+    background-image: none;
+    background-color: #00BA5A;
+    color: white;
+ }
+ #toast-container > .toast-error {
+    background-image: none;
+    background-color: red;
+    color: white;
+ }
+ /* Dropdown styles */
+.drop .drop-toggle {
+position: relative!important;
+}
+
+.drop .drop-menu {
+position: absolute;
+display: none;
+min-width: 160px;
+padding: 5px 0;
+margin: 2px 0 0;
+font-size: 14px;
+background-color: white!important;
+text-align: left;
+border: 1px solid #ccc!important;
+border-radius: 4px;
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.drop .drop-menu li {
+position: relative;
+}
+
+.drop .drop-menu li a {
+display: block;
+padding: 5px 20px;
+clear: both;
+font-weight: normal;
+line-height: 1.42857143;
+color: #333!important;
+white-space: nowrap;
+}
+
+.drop .drop-menu li a{
+background-color: #f5f5f5!important;
+color: #333!important;
+}
+
+.drop:hover .drop-menu {
+display: block;
+}
+span.search {
+display: none;
+}
+li.top-icon a {
+color: white!important;
+}
